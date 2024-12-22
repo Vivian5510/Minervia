@@ -1,6 +1,6 @@
 import defaultSettings from '@/settings'
-import { useDark, useToggle } from '@vueuse/core'
-import { useDynamicTitle } from '@/utils/dynamicTitle'
+import {useDark, useToggle} from '@vueuse/core'
+import {useDynamicTitle} from '@/utils/dynamicTitle'
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)

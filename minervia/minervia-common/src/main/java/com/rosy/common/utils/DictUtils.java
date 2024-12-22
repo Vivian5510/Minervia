@@ -1,13 +1,13 @@
 package com.rosy.common.utils;
 
-import java.util.Collection;
-import java.util.List;
-
 import com.alibaba.fastjson2.JSONArray;
 import com.rosy.common.constant.CacheConstants;
 import com.rosy.common.core.domain.entity.SysDictData;
 import com.rosy.common.core.redis.RedisCache;
 import com.rosy.common.utils.spring.SpringUtils;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * 字典工具类

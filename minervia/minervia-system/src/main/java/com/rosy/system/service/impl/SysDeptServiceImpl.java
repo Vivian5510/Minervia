@@ -1,12 +1,5 @@
 package com.rosy.system.service.impl;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.rosy.common.annotation.DataScope;
 import com.rosy.common.constant.UserConstants;
 import com.rosy.common.core.domain.TreeSelect;
@@ -21,6 +14,13 @@ import com.rosy.common.utils.spring.SpringUtils;
 import com.rosy.system.mapper.SysDeptMapper;
 import com.rosy.system.mapper.SysRoleMapper;
 import com.rosy.system.service.ISysDeptService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 部门管理 服务实现

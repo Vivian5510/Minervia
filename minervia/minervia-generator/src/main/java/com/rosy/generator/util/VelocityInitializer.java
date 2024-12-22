@@ -1,9 +1,9 @@
 package com.rosy.generator.util;
 
-import java.util.Properties;
-
-import org.apache.velocity.app.Velocity;
 import com.rosy.common.constant.Constants;
+import org.apache.velocity.app.Velocity;
+
+import java.util.Properties;
 
 /**
  * VelocityEngine工厂

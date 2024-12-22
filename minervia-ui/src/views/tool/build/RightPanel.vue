@@ -477,10 +477,9 @@
 
 <script setup>
 import draggable from "vuedraggable/dist/vuedraggable.common"
-import { isNumberStr } from '@/utils/index'
+import {isNumberStr} from '@/utils/index'
 import IconsDialog from './IconsDialog'
-import TreeNodeDialog from './TreeNodeDialog'
-import { inputComponents, selectComponents } from '@/utils/generator/config'
+import {inputComponents, selectComponents} from '@/utils/generator/config'
 
 const { proxy } = getCurrentInstance()
 const dateTimeFormat = {

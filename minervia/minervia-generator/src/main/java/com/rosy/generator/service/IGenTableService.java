@@ -1,9 +1,9 @@
 package com.rosy.generator.service;
 
+import com.rosy.generator.domain.GenTable;
+
 import java.util.List;
 import java.util.Map;
-
-import com.rosy.generator.domain.GenTable;
 
 /**
  * 业务 服务层

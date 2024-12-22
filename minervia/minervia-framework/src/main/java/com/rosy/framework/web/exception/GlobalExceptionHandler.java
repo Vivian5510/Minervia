@@ -1,7 +1,13 @@
 package com.rosy.framework.web.exception;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.rosy.common.constant.HttpStatus;
+import com.rosy.common.core.domain.AjaxResult;
+import com.rosy.common.core.text.Convert;
+import com.rosy.common.exception.DemoModeException;
+import com.rosy.common.exception.ServiceException;
+import com.rosy.common.utils.StringUtils;
+import com.rosy.common.utils.html.EscapeUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
@@ -12,13 +18,6 @@ import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-import com.rosy.common.constant.HttpStatus;
-import com.rosy.common.core.domain.AjaxResult;
-import com.rosy.common.core.text.Convert;
-import com.rosy.common.exception.DemoModeException;
-import com.rosy.common.exception.ServiceException;
-import com.rosy.common.utils.StringUtils;
-import com.rosy.common.utils.html.EscapeUtil;
 
 /**
  * 全局异常处理器

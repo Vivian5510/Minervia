@@ -1,11 +1,5 @@
 package com.rosy.system.service.impl;
 
-import java.util.Collection;
-import java.util.List;
-import javax.annotation.PostConstruct;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.rosy.common.annotation.DataSource;
 import com.rosy.common.constant.CacheConstants;
 import com.rosy.common.constant.UserConstants;
@@ -17,6 +11,12 @@ import com.rosy.common.utils.StringUtils;
 import com.rosy.system.domain.SysConfig;
 import com.rosy.system.mapper.SysConfigMapper;
 import com.rosy.system.service.ISysConfigService;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * 参数配置 服务层实现

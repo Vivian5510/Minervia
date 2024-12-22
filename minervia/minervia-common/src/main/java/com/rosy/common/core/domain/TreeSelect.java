@@ -1,14 +1,14 @@
 package com.rosy.common.core.domain;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.rosy.common.constant.UserConstants;
 import com.rosy.common.core.domain.entity.SysDept;
 import com.rosy.common.core.domain.entity.SysMenu;
 import com.rosy.common.utils.StringUtils;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Treeselect树结构实体类

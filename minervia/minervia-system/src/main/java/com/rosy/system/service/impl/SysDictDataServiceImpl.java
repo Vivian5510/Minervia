@@ -1,13 +1,13 @@
 package com.rosy.system.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.rosy.common.core.domain.entity.SysDictData;
 import com.rosy.common.utils.DictUtils;
 import com.rosy.system.mapper.SysDictDataMapper;
 import com.rosy.system.service.ISysDictDataService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 字典 业务层处理

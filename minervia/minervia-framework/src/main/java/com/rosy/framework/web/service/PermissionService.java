@@ -1,15 +1,15 @@
 package com.rosy.framework.web.service;
 
-import java.util.Set;
-
-import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 import com.rosy.common.constant.Constants;
 import com.rosy.common.core.domain.entity.SysRole;
 import com.rosy.common.core.domain.model.LoginUser;
 import com.rosy.common.utils.SecurityUtils;
 import com.rosy.common.utils.StringUtils;
 import com.rosy.framework.security.context.PermissionContextHolder;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import java.util.Set;
 
 /**
  * RuoYi首创 自定义权限实现，ss取自SpringSecurity首字母

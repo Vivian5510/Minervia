@@ -242,8 +242,17 @@
 </template>
 
 <script setup name="Role">
-import { addRole, changeRoleStatus, dataScope, delRole, getRole, listRole, updateRole, deptTreeSelect } from "@/api/system/role";
-import { roleMenuTreeselect, treeselect as menuTreeselect } from "@/api/system/menu";
+import {
+  addRole,
+  changeRoleStatus,
+  dataScope,
+  delRole,
+  deptTreeSelect,
+  getRole,
+  listRole,
+  updateRole
+} from "@/api/system/role";
+import {roleMenuTreeselect, treeselect as menuTreeselect} from "@/api/system/menu";
 
 const router = useRouter();
 const { proxy } = getCurrentInstance();

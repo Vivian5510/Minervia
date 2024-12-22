@@ -1,12 +1,5 @@
 package com.rosy.framework.web.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 import com.rosy.common.core.domain.entity.SysUser;
 import com.rosy.common.core.domain.model.LoginUser;
 import com.rosy.common.enums.UserStatus;
@@ -14,6 +7,13 @@ import com.rosy.common.exception.ServiceException;
 import com.rosy.common.utils.MessageUtils;
 import com.rosy.common.utils.StringUtils;
 import com.rosy.system.service.ISysUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 /**
  * 用户验证处理

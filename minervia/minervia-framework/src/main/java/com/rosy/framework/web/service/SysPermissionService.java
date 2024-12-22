@@ -1,18 +1,18 @@
 package com.rosy.framework.web.service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 import com.rosy.common.constant.UserConstants;
 import com.rosy.common.core.domain.entity.SysRole;
 import com.rosy.common.core.domain.entity.SysUser;
 import com.rosy.common.utils.StringUtils;
 import com.rosy.system.service.ISysMenuService;
 import com.rosy.system.service.ISysRoleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * 用户权限处理

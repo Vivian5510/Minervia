@@ -1,11 +1,11 @@
 package com.rosy.system.domain;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.rosy.common.annotation.Excel;
 import com.rosy.common.annotation.Excel.ColumnType;
 import com.rosy.common.core.domain.BaseEntity;
+
+import java.util.Date;
 
 /**
  * 系统访问记录表 sys_logininfor

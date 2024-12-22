@@ -1,9 +1,8 @@
 package com.rosy.generator.domain;
 
-import javax.validation.constraints.NotBlank;
-
 import com.rosy.common.core.domain.BaseEntity;
 import com.rosy.common.utils.StringUtils;
+import jakarta.validation.constraints.NotBlank;
 
 /**
  * 代码生成业务字段表 gen_table_column

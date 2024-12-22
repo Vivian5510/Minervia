@@ -1,15 +1,15 @@
 package com.rosy.web.controller.system;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 import com.rosy.common.core.controller.BaseController;
 import com.rosy.common.core.domain.AjaxResult;
 import com.rosy.common.core.domain.model.RegisterBody;
 import com.rosy.common.utils.StringUtils;
 import com.rosy.framework.web.service.SysRegisterService;
 import com.rosy.system.service.ISysConfigService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 注册验证

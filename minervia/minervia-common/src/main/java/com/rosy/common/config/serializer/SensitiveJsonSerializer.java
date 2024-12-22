@@ -1,8 +1,5 @@
 package com.rosy.common.config.serializer;
 
-import java.io.IOException;
-import java.util.Objects;
-
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.BeanProperty;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -13,6 +10,9 @@ import com.rosy.common.annotation.Sensitive;
 import com.rosy.common.core.domain.model.LoginUser;
 import com.rosy.common.enums.DesensitizedType;
 import com.rosy.common.utils.SecurityUtils;
+
+import java.io.IOException;
+import java.util.Objects;
 
 /**
  * 数据脱敏序列化过滤

@@ -1,16 +1,5 @@
 package com.rosy.system.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import javax.validation.Validator;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
 import com.rosy.common.annotation.DataScope;
 import com.rosy.common.constant.UserConstants;
 import com.rosy.common.core.domain.entity.SysRole;
@@ -23,14 +12,21 @@ import com.rosy.common.utils.spring.SpringUtils;
 import com.rosy.system.domain.SysPost;
 import com.rosy.system.domain.SysUserPost;
 import com.rosy.system.domain.SysUserRole;
-import com.rosy.system.mapper.SysPostMapper;
-import com.rosy.system.mapper.SysRoleMapper;
-import com.rosy.system.mapper.SysUserMapper;
-import com.rosy.system.mapper.SysUserPostMapper;
-import com.rosy.system.mapper.SysUserRoleMapper;
+import com.rosy.system.mapper.*;
 import com.rosy.system.service.ISysConfigService;
 import com.rosy.system.service.ISysDeptService;
 import com.rosy.system.service.ISysUserService;
+import jakarta.validation.Validator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 用户 业务层处理

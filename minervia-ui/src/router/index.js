@@ -1,4 +1,4 @@
-import { createWebHistory, createRouter } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 /* Layout */
 import Layout from '@/layout'
 

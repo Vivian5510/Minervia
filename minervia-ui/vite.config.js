@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv } from 'vite'
+import {defineConfig, loadEnv} from 'vite'
 import path from 'path'
 import createVitePlugins from './vite/plugins'
 
@@ -29,11 +29,37 @@ export default defineConfig(({ mode, command }) => {
       host: true,
       open: true,
       proxy: {
-        // https://cn.vitejs.dev/config/#server-proxy
+        '/swagger-ui': {
+          target: 'http://localhost:8080',  // 后端服务监听在 8080 端口
+          changeOrigin: true,               // 确保请求头中的 Origin 被修改为目标地址
+          configure: (proxy, options) => {
+            proxy.on('proxyReq', (proxyReq, req, res) => {
+              console.log('/swagger-ui Proxying request:', req.method, req.url);  // 打印请求信息
+            });
+          }
+        },
+        '/v3': {
+          target: 'http://localhost:8080',  // 后端服务监听在 8080 端口
+          changeOrigin: true,               // 确保请求头中的 Origin 被修改为目标地址
+          configure: (proxy, options) => {
+            proxy.on('proxyReq', (proxyReq, req, res) => {
+              console.log('/v3 Proxying request:', req.method, req.url);  // 打印请求信息
+            });
+          }
+        },
         '/dev-api': {
-          target: 'http://localhost:8080',
+          target: 'http://localhost:8080', // 确保这里包含了端口号
           changeOrigin: true,
-          rewrite: (p) => p.replace(/^\/dev-api/, '')
+          rewrite: (p) => p.replace(/^\/dev-api/, ''),
+          configure: (proxy, options) => {
+            // 代理请求调试
+            proxy.on('proxyReq', (proxyReq, req, res) => {
+              // 获取目标 URL 完整的协议、主机、端口
+              const targetUrl = new URL(proxy.options.target);
+              const finalUrl = targetUrl.protocol + '//' + targetUrl.host + proxyReq.path;
+              console.log('Proxying request:', req.method, req.url, '->', finalUrl);
+            });
+          }
         }
       }
     },

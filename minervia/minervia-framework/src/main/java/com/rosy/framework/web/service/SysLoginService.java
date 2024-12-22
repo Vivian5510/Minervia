@@ -1,13 +1,5 @@
 package com.rosy.framework.web.service;
 
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component;
 import com.rosy.common.constant.CacheConstants;
 import com.rosy.common.constant.Constants;
 import com.rosy.common.constant.UserConstants;
@@ -15,11 +7,7 @@ import com.rosy.common.core.domain.entity.SysUser;
 import com.rosy.common.core.domain.model.LoginUser;
 import com.rosy.common.core.redis.RedisCache;
 import com.rosy.common.exception.ServiceException;
-import com.rosy.common.exception.user.BlackListException;
-import com.rosy.common.exception.user.CaptchaException;
-import com.rosy.common.exception.user.CaptchaExpireException;
-import com.rosy.common.exception.user.UserNotExistsException;
-import com.rosy.common.exception.user.UserPasswordNotMatchException;
+import com.rosy.common.exception.user.*;
 import com.rosy.common.utils.DateUtils;
 import com.rosy.common.utils.MessageUtils;
 import com.rosy.common.utils.StringUtils;
@@ -29,6 +17,13 @@ import com.rosy.framework.manager.factory.AsyncFactory;
 import com.rosy.framework.security.context.AuthenticationContextHolder;
 import com.rosy.system.service.ISysConfigService;
 import com.rosy.system.service.ISysUserService;
+import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
 
 /**
  * 登录校验方法

@@ -1,8 +1,8 @@
 package com.rosy.common.enums;
 
-import java.util.function.Function;
-
 import com.rosy.common.utils.DesensitizedUtil;
+
+import java.util.function.Function;
 
 /**
  * 脱敏类型

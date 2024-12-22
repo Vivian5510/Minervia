@@ -22,7 +22,7 @@
 </template>
 <script setup>
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-import { watch } from 'vue'
+import {watch} from 'vue'
 
 const iconList = ref([])
 const originList = []

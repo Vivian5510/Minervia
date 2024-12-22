@@ -2,10 +2,10 @@
  * v-hasRole 角色权限处理
  * Copyright (c) 2019 minervia
  */
- 
-import useUserStore from '@/store/modules/user'
 
-export default {
+ import useUserStore from '@/store/modules/user'
+
+ export default {
   mounted(el, binding, vnode) {
     const { value } = binding
     const super_admin = "admin";

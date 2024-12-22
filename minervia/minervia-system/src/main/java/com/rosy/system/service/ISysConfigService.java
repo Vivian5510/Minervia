@@ -1,8 +1,8 @@
 package com.rosy.system.service;
 
-import java.util.List;
-
 import com.rosy.system.domain.SysConfig;
+
+import java.util.List;
 
 /**
  * 参数配置 服务层

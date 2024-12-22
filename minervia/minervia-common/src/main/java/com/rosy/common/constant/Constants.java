@@ -1,8 +1,8 @@
 package com.rosy.common.constant;
 
-import java.util.Locale;
-
 import io.jsonwebtoken.Claims;
+
+import java.util.Locale;
 
 /**
  * 通用常量信息
@@ -168,6 +168,6 @@ public class Constants {
     /**
      * 定时任务违规的字符
      */
-    public static final String[] JOB_ERROR_STR = {"java.net.URL", "javax.naming.InitialContext", "org.yaml.snakeyaml",
+    public static final String[] JOB_ERROR_STR = {"java.net.URL", "jakarta.naming.InitialContext", "org.yaml.snakeyaml",
             "org.springframework", "org.apache", "com.rosy.common.utils.file", "com.rosy.common.config", "com.rosy.generator"};
 }

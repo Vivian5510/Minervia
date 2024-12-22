@@ -51,7 +51,7 @@
 </template>
 
 <script setup>
-import { listDbTable, importTable } from "@/api/tool/gen";
+import {importTable, listDbTable} from "@/api/tool/gen";
 
 const total = ref(0);
 const visible = ref(false);

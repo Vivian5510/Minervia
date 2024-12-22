@@ -1,9 +1,9 @@
 package com.rosy.common.utils.uuid;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import com.rosy.common.utils.DateUtils;
 import com.rosy.common.utils.StringUtils;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author rosy 序列生成类

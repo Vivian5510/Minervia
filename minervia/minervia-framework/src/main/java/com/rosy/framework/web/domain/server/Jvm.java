@@ -1,9 +1,9 @@
 package com.rosy.framework.web.domain.server;
 
-import java.lang.management.ManagementFactory;
-
 import com.rosy.common.utils.Arith;
 import com.rosy.common.utils.DateUtils;
+
+import java.lang.management.ManagementFactory;
 
 /**
  * JVM相关信息

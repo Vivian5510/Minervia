@@ -1,8 +1,8 @@
 package com.rosy.quartz.mapper;
 
-import java.util.List;
-
 import com.rosy.quartz.domain.SysJobLog;
+
+import java.util.List;
 
 /**
  * 调度任务日志信息 数据层

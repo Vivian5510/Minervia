@@ -1,8 +1,8 @@
 package com.rosy.framework.security.context;
 
+import com.rosy.common.core.text.Convert;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
-import com.rosy.common.core.text.Convert;
 
 /**
  * 权限信息

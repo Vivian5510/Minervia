@@ -1,8 +1,8 @@
 package com.rosy.generator.service;
 
-import java.util.List;
-
 import com.rosy.generator.domain.GenTableColumn;
+
+import java.util.List;
 
 /**
  * 业务字段 服务层

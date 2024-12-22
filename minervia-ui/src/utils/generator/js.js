@@ -1,5 +1,5 @@
-import { titleCase } from '@/utils/index'
-import { trigger } from './config'
+import {titleCase} from '@/utils/index'
+import {trigger} from './config'
 // 文件大小设置
 const units = {
   KB: '1024',

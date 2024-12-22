@@ -214,10 +214,19 @@
 </template>
 
 <script setup name="User">
-import { getToken } from "@/utils/auth";
+import {getToken} from "@/utils/auth";
 import useAppStore from '@/store/modules/app'
-import { changeUserStatus, listUser, resetUserPwd, delUser, getUser, updateUser, addUser, deptTreeSelect } from "@/api/system/user";
-import { Splitpanes, Pane } from "splitpanes"
+import {
+  addUser,
+  changeUserStatus,
+  delUser,
+  deptTreeSelect,
+  getUser,
+  listUser,
+  resetUserPwd,
+  updateUser
+} from "@/api/system/user";
+import {Pane, Splitpanes} from "splitpanes"
 import "splitpanes/dist/splitpanes.css"
 
 const router = useRouter();

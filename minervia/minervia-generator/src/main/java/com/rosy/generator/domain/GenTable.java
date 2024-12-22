@@ -1,13 +1,13 @@
 package com.rosy.generator.domain;
 
-import java.util.List;
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-
-import org.apache.commons.lang3.ArrayUtils;
 import com.rosy.common.constant.GenConstants;
 import com.rosy.common.core.domain.BaseEntity;
 import com.rosy.common.utils.StringUtils;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import org.apache.commons.lang3.ArrayUtils;
+
+import java.util.List;
 
 /**
  * 业务表 gen_table

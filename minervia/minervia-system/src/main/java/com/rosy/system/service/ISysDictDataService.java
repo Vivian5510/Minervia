@@ -1,8 +1,8 @@
 package com.rosy.system.service;
 
-import java.util.List;
-
 import com.rosy.common.core.domain.entity.SysDictData;
+
+import java.util.List;
 
 /**
  * 字典 业务层

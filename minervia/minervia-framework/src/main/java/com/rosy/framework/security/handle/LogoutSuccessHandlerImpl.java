@@ -1,14 +1,5 @@
 package com.rosy.framework.security.handle;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import com.alibaba.fastjson2.JSON;
 import com.rosy.common.constant.Constants;
 import com.rosy.common.core.domain.AjaxResult;
@@ -19,6 +10,15 @@ import com.rosy.common.utils.StringUtils;
 import com.rosy.framework.manager.AsyncManager;
 import com.rosy.framework.manager.factory.AsyncFactory;
 import com.rosy.framework.web.service.TokenService;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+
+import java.io.IOException;
 
 /**
  * 自定义退出处理类 返回成功

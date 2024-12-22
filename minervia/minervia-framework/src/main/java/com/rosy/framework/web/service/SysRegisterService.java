@@ -1,7 +1,5 @@
 package com.rosy.framework.web.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import com.rosy.common.constant.CacheConstants;
 import com.rosy.common.constant.Constants;
 import com.rosy.common.constant.UserConstants;
@@ -17,6 +15,8 @@ import com.rosy.framework.manager.AsyncManager;
 import com.rosy.framework.manager.factory.AsyncFactory;
 import com.rosy.system.service.ISysConfigService;
 import com.rosy.system.service.ISysUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * 注册校验方法

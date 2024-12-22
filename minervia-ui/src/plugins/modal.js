@@ -1,4 +1,4 @@
-import { ElMessage, ElMessageBox, ElNotification, ElLoading } from 'element-plus'
+import {ElLoading, ElMessage, ElMessageBox, ElNotification} from 'element-plus'
 
 let loadingInstance;
 

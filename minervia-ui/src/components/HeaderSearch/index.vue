@@ -19,8 +19,8 @@
 
 <script setup>
 import Fuse from 'fuse.js'
-import { getNormalPath } from '@/utils/minervia.js'
-import { isHttp } from '@/utils/validate'
+import {getNormalPath} from '@/utils/minervia.js'
+import {isHttp} from '@/utils/validate'
 import usePermissionStore from '@/store/modules/permission'
 
 const search = ref('');

@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { updateUserProfile } from "@/api/system/user";
+import {updateUserProfile} from "@/api/system/user";
 
 const props = defineProps({
   user: {

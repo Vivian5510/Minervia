@@ -1,13 +1,6 @@
 package com.rosy.common.utils.file;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Objects;
-
-import org.apache.commons.io.FilenameUtils;
-import org.springframework.web.multipart.MultipartFile;
-import com.rosy.common.config.RuoYiConfig;
+import com.rosy.common.config.MinerviaConfig;
 import com.rosy.common.constant.Constants;
 import com.rosy.common.exception.file.FileNameLengthLimitExceededException;
 import com.rosy.common.exception.file.FileSizeLimitExceededException;
@@ -15,6 +8,13 @@ import com.rosy.common.exception.file.InvalidExtensionException;
 import com.rosy.common.utils.DateUtils;
 import com.rosy.common.utils.StringUtils;
 import com.rosy.common.utils.uuid.Seq;
+import org.apache.commons.io.FilenameUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.Objects;
 
 /**
  * 文件上传工具类
@@ -35,7 +35,7 @@ public class FileUploadUtils {
     /**
      * 默认上传的地址
      */
-    private static String defaultBaseDir = RuoYiConfig.getProfile();
+    private static String defaultBaseDir = MinerviaConfig.getProfile();
 
     public static void setDefaultBaseDir(String defaultBaseDir) {
         FileUploadUtils.defaultBaseDir = defaultBaseDir;
@@ -125,7 +125,7 @@ public class FileUploadUtils {
     }
 
     public static final String getPathFileName(String uploadDir, String fileName) throws IOException {
-        int dirLastIndex = RuoYiConfig.getProfile().length() + 1;
+        int dirLastIndex = MinerviaConfig.getProfile().length() + 1;
         String currentDir = StringUtils.substring(uploadDir, dirLastIndex);
         return Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;
     }

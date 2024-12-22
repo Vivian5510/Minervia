@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { scrollTo } from '@/utils/scroll-to'
+import {scrollTo} from '@/utils/scroll-to'
 
 const props = defineProps({
   total: {

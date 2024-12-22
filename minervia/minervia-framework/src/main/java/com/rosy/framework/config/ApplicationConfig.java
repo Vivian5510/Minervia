@@ -1,12 +1,12 @@
 package com.rosy.framework.config;
 
-import java.util.TimeZone;
-
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+
+import java.util.TimeZone;
 
 /**
  * 程序注解配置

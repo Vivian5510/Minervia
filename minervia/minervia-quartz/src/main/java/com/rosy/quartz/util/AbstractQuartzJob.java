@@ -1,12 +1,5 @@
 package com.rosy.quartz.util;
 
-import java.util.Date;
-
-import org.quartz.Job;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import com.rosy.common.constant.Constants;
 import com.rosy.common.constant.ScheduleConstants;
 import com.rosy.common.utils.ExceptionUtil;
@@ -16,6 +9,13 @@ import com.rosy.common.utils.spring.SpringUtils;
 import com.rosy.quartz.domain.SysJob;
 import com.rosy.quartz.domain.SysJobLog;
 import com.rosy.quartz.service.ISysJobLogService;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Date;
 
 /**
  * 抽象quartz调用

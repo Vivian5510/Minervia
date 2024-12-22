@@ -1,5 +1,9 @@
 package com.rosy.framework.config;
 
+import com.rosy.framework.config.properties.PermitAllUrlProperties;
+import com.rosy.framework.security.filter.JwtAuthenticationTokenFilter;
+import com.rosy.framework.security.handle.AuthenticationEntryPointImpl;
+import com.rosy.framework.security.handle.LogoutSuccessHandlerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +13,7 @@ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,10 +21,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.filter.CorsFilter;
-import com.rosy.framework.config.properties.PermitAllUrlProperties;
-import com.rosy.framework.security.filter.JwtAuthenticationTokenFilter;
-import com.rosy.framework.security.handle.AuthenticationEntryPointImpl;
-import com.rosy.framework.security.handle.LogoutSuccessHandlerImpl;
 
 /**
  * spring security配置
@@ -98,7 +99,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 // 禁用HTTP响应标头
                 .headers((headersCustomizer) -> {
-                    headersCustomizer.cacheControl(cache -> cache.disable()).frameOptions(options -> options.sameOrigin());
+                    headersCustomizer.cacheControl(HeadersConfigurer.CacheControlConfig::disable).frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin);
                 })
                 // 认证失败处理类
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
@@ -106,12 +107,13 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 // 注解标记允许匿名访问的url
                 .authorizeHttpRequests((requests) -> {
-                    permitAllUrl.getUrls().forEach(url -> requests.antMatchers(url).permitAll());
+                    permitAllUrl.getUrls().forEach(url -> requests.requestMatchers(url).permitAll());
                     // 对于登录login 注册register 验证码captchaImage 允许匿名访问
-                    requests.antMatchers("/login", "/register", "/captchaImage").permitAll()
+                    requests.requestMatchers("/login", "/register", "/captchaImage").permitAll()
                             // 静态资源，可匿名访问
-                            .antMatchers(HttpMethod.GET, "/", "/*.html", "/**/*.html", "/**/*.css", "/**/*.js", "/profile/**").permitAll()
-                            .antMatchers("/swagger-ui.html", "/swagger-resources/**", "/webjars/**", "/*/api-docs", "/druid/**").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/", "/*.html", "/**.html", "/**.css", "/**.js", "/profile/**").permitAll()
+                            .requestMatchers("/druid/**").permitAll()
+                            .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/**").permitAll()
                             // 除上面外的所有请求全部需要鉴权认证
                             .anyRequest().authenticated();
                 })

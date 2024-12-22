@@ -1,11 +1,11 @@
 package com.rosy.common.utils.ip;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import javax.servlet.http.HttpServletRequest;
-
 import com.rosy.common.utils.ServletUtils;
 import com.rosy.common.utils.StringUtils;
+import jakarta.servlet.http.HttpServletRequest;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * 获取IP方法

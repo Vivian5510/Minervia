@@ -1,12 +1,5 @@
 package com.rosy.framework.aspectj;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.springframework.stereotype.Component;
 import com.rosy.common.annotation.DataScope;
 import com.rosy.common.constant.UserConstants;
 import com.rosy.common.core.domain.BaseEntity;
@@ -17,6 +10,13 @@ import com.rosy.common.core.text.Convert;
 import com.rosy.common.utils.SecurityUtils;
 import com.rosy.common.utils.StringUtils;
 import com.rosy.framework.security.context.PermissionContextHolder;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 数据过滤处理

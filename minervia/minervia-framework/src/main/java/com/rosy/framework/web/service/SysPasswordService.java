@@ -1,11 +1,5 @@
 package com.rosy.framework.web.service;
 
-import java.util.concurrent.TimeUnit;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component;
 import com.rosy.common.constant.CacheConstants;
 import com.rosy.common.core.domain.entity.SysUser;
 import com.rosy.common.core.redis.RedisCache;
@@ -13,6 +7,12 @@ import com.rosy.common.exception.user.UserPasswordNotMatchException;
 import com.rosy.common.exception.user.UserPasswordRetryLimitExceedException;
 import com.rosy.common.utils.SecurityUtils;
 import com.rosy.framework.security.context.AuthenticationContextHolder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * 登录密码方法

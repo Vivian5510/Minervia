@@ -1,10 +1,10 @@
 package com.rosy.system.service.impl;
 
-import org.springframework.stereotype.Service;
 import com.rosy.common.core.domain.model.LoginUser;
 import com.rosy.common.utils.StringUtils;
 import com.rosy.system.domain.SysUserOnline;
 import com.rosy.system.service.ISysUserOnlineService;
+import org.springframework.stereotype.Service;
 
 /**
  * 在线用户 服务层处理

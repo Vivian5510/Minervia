@@ -155,7 +155,14 @@
 </template>
 
 <script setup name="CacheList">
-import { listCacheName, listCacheKey, getCacheValue, clearCacheName, clearCacheKey, clearCacheAll } from "@/api/monitor/cache";
+import {
+  clearCacheAll,
+  clearCacheKey,
+  clearCacheName,
+  getCacheValue,
+  listCacheKey,
+  listCacheName
+} from "@/api/monitor/cache";
 
 const { proxy } = getCurrentInstance();
 

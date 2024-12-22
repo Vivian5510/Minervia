@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { isExternal } from "@/utils/validate";
+import {isExternal} from "@/utils/validate";
 
 const props = defineProps({
   src: {

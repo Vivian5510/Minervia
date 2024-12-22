@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-import { parseStrEmpty } from "@/utils/minervia.js";
+import {parseStrEmpty} from "@/utils/minervia.js";
 
 // 查询用户列表
 export function listUser(query) {

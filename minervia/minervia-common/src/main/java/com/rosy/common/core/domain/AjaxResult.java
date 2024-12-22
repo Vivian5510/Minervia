@@ -1,10 +1,10 @@
 package com.rosy.common.core.domain;
 
-import java.util.HashMap;
-import java.util.Objects;
-
 import com.rosy.common.constant.HttpStatus;
 import com.rosy.common.utils.StringUtils;
+
+import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * 操作消息提醒

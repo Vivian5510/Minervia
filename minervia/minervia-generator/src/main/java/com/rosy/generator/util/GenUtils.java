@@ -1,13 +1,13 @@
 package com.rosy.generator.util;
 
-import java.util.Arrays;
-
-import org.apache.commons.lang3.RegExUtils;
 import com.rosy.common.constant.GenConstants;
 import com.rosy.common.utils.StringUtils;
 import com.rosy.generator.config.GenConfig;
 import com.rosy.generator.domain.GenTable;
 import com.rosy.generator.domain.GenTableColumn;
+import org.apache.commons.lang3.RegExUtils;
+
+import java.util.Arrays;
 
 /**
  * 代码生成器 工具类

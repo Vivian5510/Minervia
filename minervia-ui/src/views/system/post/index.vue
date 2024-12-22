@@ -145,7 +145,7 @@
 </template>
 
 <script setup name="Post">
-import { listPost, addPost, delPost, getPost, updatePost } from "@/api/system/post";
+import {addPost, delPost, getPost, listPost, updatePost} from "@/api/system/post";
 
 const { proxy } = getCurrentInstance();
 const { sys_normal_disable } = proxy.useDict("sys_normal_disable");

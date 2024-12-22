@@ -1,9 +1,5 @@
 package com.rosy.system.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.rosy.common.constant.UserConstants;
 import com.rosy.common.exception.ServiceException;
 import com.rosy.common.utils.StringUtils;
@@ -11,6 +7,10 @@ import com.rosy.system.domain.SysPost;
 import com.rosy.system.mapper.SysPostMapper;
 import com.rosy.system.mapper.SysUserPostMapper;
 import com.rosy.system.service.ISysPostService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 岗位信息 服务层处理

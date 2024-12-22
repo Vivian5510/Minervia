@@ -177,8 +177,8 @@
 
 <script setup name="Data">
 import useDictStore from '@/store/modules/dict'
-import { optionselect as getDictOptionselect, getType } from "@/api/system/dict/type";
-import { listData, getData, delData, addData, updateData } from "@/api/system/dict/data";
+import {getType, optionselect as getDictOptionselect} from "@/api/system/dict/type";
+import {addData, delData, getData, listData, updateData} from "@/api/system/dict/data";
 
 const { proxy } = getCurrentInstance();
 const { sys_normal_disable } = proxy.useDict("sys_normal_disable");

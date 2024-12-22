@@ -28,9 +28,9 @@
 </template>
 
 <script setup>
-import { isExternal } from '@/utils/validate'
+import {isExternal} from '@/utils/validate'
 import AppLink from './Link'
-import { getNormalPath } from '@/utils/minervia.js'
+import {getNormalPath} from '@/utils/minervia.js'
 
 const props = defineProps({
   // route object

@@ -1,4 +1,4 @@
-import { parseTime } from './minervia.js'
+import {parseTime} from './minervia.js'
 
 /**
  * 表格时间格式化

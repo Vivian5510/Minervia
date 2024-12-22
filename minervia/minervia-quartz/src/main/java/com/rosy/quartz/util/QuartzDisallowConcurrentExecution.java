@@ -1,8 +1,8 @@
 package com.rosy.quartz.util;
 
+import com.rosy.quartz.domain.SysJob;
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;
-import com.rosy.quartz.domain.SysJob;
 
 /**
  * 定时任务处理（禁止并发执行）

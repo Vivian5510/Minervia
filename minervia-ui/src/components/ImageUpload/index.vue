@@ -46,8 +46,8 @@
 </template>
 
 <script setup>
-import { getToken } from "@/utils/auth";
-import { isExternal } from "@/utils/validate";
+import {getToken} from "@/utils/auth";
+import {isExternal} from "@/utils/validate";
 
 const props = defineProps({
   modelValue: [String, Object, Array],

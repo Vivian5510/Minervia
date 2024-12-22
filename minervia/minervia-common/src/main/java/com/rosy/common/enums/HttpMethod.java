@@ -1,9 +1,9 @@
 package com.rosy.common.enums;
 
+import org.springframework.lang.Nullable;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import org.springframework.lang.Nullable;
 
 /**
  * 请求方式

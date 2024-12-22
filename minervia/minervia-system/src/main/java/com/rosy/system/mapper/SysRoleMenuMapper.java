@@ -1,8 +1,8 @@
 package com.rosy.system.mapper;
 
-import java.util.List;
-
 import com.rosy.system.domain.SysRoleMenu;
+
+import java.util.List;
 
 /**
  * 角色与菜单关联表 数据层

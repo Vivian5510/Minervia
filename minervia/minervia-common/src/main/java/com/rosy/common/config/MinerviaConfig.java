@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConfigurationProperties(prefix = "minervia")
-public class RuoYiConfig {
+public class MinerviaConfig {
     /**
      * 项目名称
      */
@@ -70,7 +70,7 @@ public class RuoYiConfig {
     }
 
     public void setProfile(String profile) {
-        RuoYiConfig.profile = profile;
+        MinerviaConfig.profile = profile;
     }
 
     public static boolean isAddressEnabled() {
@@ -78,7 +78,7 @@ public class RuoYiConfig {
     }
 
     public void setAddressEnabled(boolean addressEnabled) {
-        RuoYiConfig.addressEnabled = addressEnabled;
+        MinerviaConfig.addressEnabled = addressEnabled;
     }
 
     public static String getCaptchaType() {
@@ -86,7 +86,7 @@ public class RuoYiConfig {
     }
 
     public void setCaptchaType(String captchaType) {
-        RuoYiConfig.captchaType = captchaType;
+        MinerviaConfig.captchaType = captchaType;
     }
 
     /**

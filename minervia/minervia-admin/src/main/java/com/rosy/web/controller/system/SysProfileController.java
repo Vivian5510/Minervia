@@ -1,18 +1,7 @@
 package com.rosy.web.controller.system;
 
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import com.rosy.common.annotation.Log;
-import com.rosy.common.config.RuoYiConfig;
+import com.rosy.common.config.MinerviaConfig;
 import com.rosy.common.core.controller.BaseController;
 import com.rosy.common.core.domain.AjaxResult;
 import com.rosy.common.core.domain.entity.SysUser;
@@ -24,6 +13,11 @@ import com.rosy.common.utils.file.FileUploadUtils;
 import com.rosy.common.utils.file.MimeTypeUtils;
 import com.rosy.framework.web.service.TokenService;
 import com.rosy.system.service.ISysUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Map;
 
 /**
  * 个人信息 业务处理
@@ -113,7 +107,7 @@ public class SysProfileController extends BaseController {
     public AjaxResult avatar(@RequestParam("avatarfile") MultipartFile file) throws Exception {
         if (!file.isEmpty()) {
             LoginUser loginUser = getLoginUser();
-            String avatar = FileUploadUtils.upload(RuoYiConfig.getAvatarPath(), file, MimeTypeUtils.IMAGE_EXTENSION);
+            String avatar = FileUploadUtils.upload(MinerviaConfig.getAvatarPath(), file, MimeTypeUtils.IMAGE_EXTENSION);
             if (userService.updateUserAvatar(loginUser.getUsername(), avatar)) {
                 AjaxResult ajax = AjaxResult.success();
                 ajax.put("imgUrl", avatar);

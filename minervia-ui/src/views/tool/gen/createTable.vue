@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { createTable } from "@/api/tool/gen";
+import {createTable} from "@/api/tool/gen";
 
 const visible = ref(false);
 const content = ref("");

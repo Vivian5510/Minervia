@@ -1,13 +1,13 @@
 package com.rosy.common.utils.ip;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import com.rosy.common.config.RuoYiConfig;
+import com.rosy.common.config.MinerviaConfig;
 import com.rosy.common.constant.Constants;
 import com.rosy.common.utils.StringUtils;
 import com.rosy.common.utils.http.HttpUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 获取地址类
@@ -28,7 +28,7 @@ public class AddressUtils {
         if (IpUtils.internalIp(ip)) {
             return "内网IP";
         }
-        if (RuoYiConfig.isAddressEnabled()) {
+        if (MinerviaConfig.isAddressEnabled()) {
             try {
                 String rspStr = HttpUtils.sendGet(IP_URL, "ip=" + ip + "&json=true", Constants.GBK);
                 if (StringUtils.isEmpty(rspStr)) {

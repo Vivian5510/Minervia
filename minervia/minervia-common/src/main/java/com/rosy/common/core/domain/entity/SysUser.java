@@ -1,17 +1,19 @@
 package com.rosy.common.core.domain.entity;
 
-import java.util.Date;
-import java.util.List;
-import javax.validation.constraints.*;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.rosy.common.annotation.Excel;
 import com.rosy.common.annotation.Excel.ColumnType;
 import com.rosy.common.annotation.Excel.Type;
 import com.rosy.common.annotation.Excels;
 import com.rosy.common.core.domain.BaseEntity;
 import com.rosy.common.xss.Xss;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * 用户对象 sys_user

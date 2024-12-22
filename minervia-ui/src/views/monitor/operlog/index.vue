@@ -198,7 +198,7 @@
 </template>
 
 <script setup name="Operlog">
-import { list, delOperlog, cleanOperlog } from "@/api/monitor/operlog";
+import {cleanOperlog, delOperlog, list} from "@/api/monitor/operlog";
 
 const { proxy } = getCurrentInstance();
 const { sys_oper_type, sys_common_status } = proxy.useDict("sys_oper_type","sys_common_status");

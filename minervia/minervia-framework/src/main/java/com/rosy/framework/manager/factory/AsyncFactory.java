@@ -1,9 +1,5 @@
 package com.rosy.framework.manager.factory;
 
-import java.util.TimerTask;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import com.rosy.common.constant.Constants;
 import com.rosy.common.utils.LogUtils;
 import com.rosy.common.utils.ServletUtils;
@@ -16,6 +12,10 @@ import com.rosy.system.domain.SysOperLog;
 import com.rosy.system.service.ISysLogininforService;
 import com.rosy.system.service.ISysOperLogService;
 import eu.bitwalker.useragentutils.UserAgent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.TimerTask;
 
 /**
  * 异步工厂（产生任务用）

@@ -2,10 +2,10 @@
  * v-hasPermi 操作权限处理
  * Copyright (c) 2019 minervia
  */
- 
-import useUserStore from '@/store/modules/user'
 
-export default {
+ import useUserStore from '@/store/modules/user'
+
+ export default {
   mounted(el, binding, vnode) {
     const { value } = binding
     const all_permission = "*:*:*";

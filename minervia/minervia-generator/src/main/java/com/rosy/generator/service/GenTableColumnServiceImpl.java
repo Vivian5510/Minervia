@@ -1,12 +1,12 @@
 package com.rosy.generator.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.rosy.common.core.text.Convert;
 import com.rosy.generator.domain.GenTableColumn;
 import com.rosy.generator.mapper.GenTableColumnMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 业务字段 服务层实现

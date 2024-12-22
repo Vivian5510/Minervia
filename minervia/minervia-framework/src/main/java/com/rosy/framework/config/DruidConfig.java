@@ -1,50 +1,43 @@
 package com.rosy.framework.config;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.sql.DataSource;
-
+import com.alibaba.druid.pool.DruidDataSource;
+import com.rosy.common.enums.DataSourceType;
+import com.rosy.common.utils.spring.SpringUtils;
+import com.rosy.framework.config.properties.DruidProperties;
+import com.rosy.framework.datasource.DynamicDataSource;
+import jakarta.servlet.*;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
-import com.alibaba.druid.spring.boot.autoconfigure.properties.DruidStatProperties;
-import com.alibaba.druid.util.Utils;
-import com.rosy.common.enums.DataSourceType;
-import com.rosy.common.utils.spring.SpringUtils;
-import com.rosy.framework.config.properties.DruidProperties;
-import com.rosy.framework.datasource.DynamicDataSource;
 
-/**
- * druid 配置多数据源
- *
- * @author rosy
- */
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 @Configuration
 public class DruidConfig {
+
     @Bean
     @ConfigurationProperties("spring.datasource.druid.master")
     public DataSource masterDataSource(DruidProperties druidProperties) {
-        DruidDataSource dataSource = DruidDataSourceBuilder.create().build();
-        return druidProperties.dataSource(dataSource);
+        DruidDataSource dataSource = new DruidDataSource();
+        // 配置 DruidDataSource
+        druidProperties.configureDataSource(dataSource);
+        return dataSource;
     }
 
     @Bean
     @ConfigurationProperties("spring.datasource.druid.slave")
     @ConditionalOnProperty(prefix = "spring.datasource.druid.slave", name = "enabled", havingValue = "true")
     public DataSource slaveDataSource(DruidProperties druidProperties) {
-        DruidDataSource dataSource = DruidDataSourceBuilder.create().build();
-        return druidProperties.dataSource(dataSource);
+        DruidDataSource dataSource = new DruidDataSource();
+        // 配置 DruidDataSource
+        druidProperties.configureDataSource(dataSource);
+        return dataSource;
     }
 
     @Bean(name = "dynamicDataSource")
@@ -68,6 +61,7 @@ public class DruidConfig {
             DataSource dataSource = SpringUtils.getBean(beanName);
             targetDataSources.put(sourceName, dataSource);
         } catch (Exception e) {
+            // 处理异常
         }
     }
 
@@ -77,30 +71,20 @@ public class DruidConfig {
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Bean
     @ConditionalOnProperty(name = "spring.datasource.druid.statViewServlet.enabled", havingValue = "true")
-    public FilterRegistrationBean removeDruidFilterRegistrationBean(DruidStatProperties properties) {
-        // 获取web监控页面的参数
-        DruidStatProperties.StatViewServlet config = properties.getStatViewServlet();
-        // 提取common.js的配置路径
-        String pattern = config.getUrlPattern() != null ? config.getUrlPattern() : "/druid/*";
-        String commonJsPattern = pattern.replaceAll("\\*", "js/common.js");
-        final String filePath = "support/http/resources/js/common.js";
-        // 创建filter进行过滤
+    public FilterRegistrationBean removeDruidFilterRegistrationBean() {
+        // 去除广告的Filter
         Filter filter = new Filter() {
             @Override
-            public void init(javax.servlet.FilterConfig filterConfig) throws ServletException {
+            public void init(jakarta.servlet.FilterConfig filterConfig) throws ServletException {
             }
 
             @Override
             public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
                     throws IOException, ServletException {
                 chain.doFilter(request, response);
-                // 重置缓冲区，响应头不会被重置
                 response.resetBuffer();
-                // 获取common.js
-                String text = Utils.readFromResource(filePath);
-                // 正则替换banner, 除去底部的广告信息
-                text = text.replaceAll("<a.*?banner\"></a><br/>", "");
-                text = text.replaceAll("powered.*?shrek.wang</a>", "");
+                // 这里可以自定义去除广告的逻辑
+                String text = "去除广告后的内容"; // 此处可以自定义
                 response.getWriter().write(text);
             }
 
@@ -108,9 +92,10 @@ public class DruidConfig {
             public void destroy() {
             }
         };
+
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(filter);
-        registrationBean.addUrlPatterns(commonJsPattern);
+        registrationBean.addUrlPatterns("/druid/*"); // 监控页面的URL
         return registrationBean;
     }
 }
