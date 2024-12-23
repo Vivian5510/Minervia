@@ -6,10 +6,10 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- -----------------------------------------------
--- Table structure for table `ai_interview_banner`
+-- Table structure for table `minervia_banner`
 -- -----------------------------------------------
-DROP TABLE IF EXISTS `ai_interview_banner`;
-CREATE TABLE `ai_interview_banner`
+DROP TABLE IF EXISTS `minervia_banner`;
+CREATE TABLE `minervia_banner`
 (
     `id`          INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `image`       VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '图片路径',
@@ -28,10 +28,10 @@ CREATE TABLE `ai_interview_banner`
 
 
 -- -------------------------------------------------
--- Table structure for table `ai_interview_category`
+-- Table structure for table `minervia_category`
 -- -------------------------------------------------
-DROP TABLE IF EXISTS `ai_interview_category`;
-CREATE TABLE `ai_interview_category`
+DROP TABLE IF EXISTS `minervia_category`;
+CREATE TABLE `minervia_category`
 (
     `id`          INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `text`        VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '宫格中的文本',
@@ -51,10 +51,10 @@ CREATE TABLE `ai_interview_category`
 
 
 -- ------------------------------------------------------
--- Table structure for table `ai_interview_category_item`
+-- Table structure for table `minervia_category_item`
 -- ------------------------------------------------------
-DROP TABLE IF EXISTS `ai_interview_category_item`;
-CREATE TABLE `ai_interview_category_item`
+DROP TABLE IF EXISTS `minervia_category_item`;
+CREATE TABLE `minervia_category_item`
 (
     `id`          INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `text`        VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '下拉框展示的文本',
@@ -74,10 +74,10 @@ CREATE TABLE `ai_interview_category_item`
 
 
 -- ------------------------------------------------
--- Table structure for table `ai_interview_records`
+-- Table structure for table `minervia_records`
 -- ------------------------------------------------
-DROP TABLE IF EXISTS `ai_interview_records`;
-CREATE TABLE `ai_interview_interview_records`
+DROP TABLE IF EXISTS `minervia_records`;
+CREATE TABLE `minervia_records`
 (
     `id`          INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `session_id`  VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '会话ID',
@@ -99,10 +99,10 @@ CREATE TABLE `ai_interview_interview_records`
 
 
 -- -----------------------------------------------
--- Table structure for table `ai_interview_models`
+-- Table structure for table `minervia_models`
 -- -----------------------------------------------
-DROP TABLE IF EXISTS `ai_interview_models`;
-CREATE TABLE `ai_interview_models`
+DROP TABLE IF EXISTS `minervia_models`;
+CREATE TABLE `minervia_models`
 (
     `id`              INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `name`            VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '模型名称',

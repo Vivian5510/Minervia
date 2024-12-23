@@ -22,7 +22,6 @@
             <groupId>com.rosy</groupId>
             <artifactId>minervia-common</artifactId>
         </dependency>
-
     </dependencies>
 
 </project>

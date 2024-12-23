@@ -16,6 +16,16 @@
     </description>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.5.9</version>
+        </dependency>
 
         <!-- spring-boot-devtools -->
         <dependency>
@@ -27,7 +37,6 @@
         <dependency>
             <groupId>com.github.xingfudeshi</groupId>
             <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
-
         </dependency>
 
         <dependency>
@@ -90,8 +99,8 @@
                 <version>3.13.0</version>
                 <configuration>
                     <parameters>true</parameters>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>9</source>
+                    <target>9</target>
                 </configuration>
             </plugin>
             <!--<plugin>
