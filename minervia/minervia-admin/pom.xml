@@ -73,6 +73,11 @@
             <artifactId>minervia-generator</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.rosy</groupId>
+            <artifactId>minervia-main</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

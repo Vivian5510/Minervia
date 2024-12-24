@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -40,6 +41,7 @@ public class WxLogin implements Serializable {
     /**
      * 会话Key
      */
+    @JsonProperty("session_key")
     private String sessionKey;
 
     private String unionid;

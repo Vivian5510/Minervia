@@ -146,3 +146,9 @@ xss:
   excludes: /system/notice
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
+
+mp:
+  app-id: wx94e0fa43c0897d99
+  app-secret: 4dc7509a0bc10afc70ace4a519c1e680
+  grant_type: authorization_code
+  login-url: https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={secret}&js_code={js_code}&grant_type={grant-type}

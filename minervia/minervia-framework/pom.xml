@@ -57,8 +57,6 @@
             <groupId>com.rosy</groupId>
             <artifactId>minervia-system</artifactId>
         </dependency>
-
-        <!-- minervia主体模块-->
         <dependency>
             <groupId>com.rosy</groupId>
             <artifactId>minervia-main</artifactId>
