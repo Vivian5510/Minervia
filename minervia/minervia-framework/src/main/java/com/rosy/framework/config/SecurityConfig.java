@@ -2,6 +2,7 @@ package com.rosy.framework.config;
 
 import com.rosy.framework.config.properties.PermitAllUrlProperties;
 import com.rosy.framework.security.filter.JwtAuthenticationTokenFilter;
+import com.rosy.framework.security.filter.MpAuthenticationTokenFilter;
 import com.rosy.framework.security.handle.AuthenticationEntryPointImpl;
 import com.rosy.framework.security.handle.LogoutSuccessHandlerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,11 @@ public class SecurityConfig {
     @Autowired
     private JwtAuthenticationTokenFilter authenticationTokenFilter;
 
+    /**
+     * mp-token认证过滤器
+     */
+    @Autowired
+    private MpAuthenticationTokenFilter mpAuthenticationTokenFilter;
     /**
      * 跨域过滤器
      */
@@ -110,7 +116,7 @@ public class SecurityConfig {
                     permitAllUrl.getUrls().forEach(url -> requests.requestMatchers(url).permitAll());
                     requests
                             // 对于小程序登录login 允许匿名访问
-                            .requestMatchers("/mp/login").permitAll()
+                            .requestMatchers("/mp/**").permitAll()
                             // 对于后台登录login 注册register 验证码captchaImage 允许匿名访问
                             .requestMatchers("/login", "/register", "/captchaImage").permitAll()
                             // 静态资源，可匿名访问
@@ -123,6 +129,7 @@ public class SecurityConfig {
                 // 添加Logout filter
                 .logout(logout -> logout.logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler))
                 // 添加JWT filter
+                .addFilterBefore(mpAuthenticationTokenFilter, JwtAuthenticationTokenFilter.class)
                 .addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 // 添加CORS filter
                 .addFilterBefore(corsFilter, JwtAuthenticationTokenFilter.class)

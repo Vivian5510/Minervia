@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class MpAuthenticationTokenFilter extends OncePerRequestFilter {
@@ -24,6 +25,12 @@ public class MpAuthenticationTokenFilter extends OncePerRequestFilter {
         String requestURI = request.getRequestURI();
         if (requestURI.contains("/mp") && !requestURI.contains("/mp/login")) {
             WxLogin wxLogin = redisCache.getCacheObject(CacheConstants.WX_LOGIN_TOKEN_KEY + request.getHeader("mp-token"));
+            if (wxLogin == null) {
+                response.setContentType("application/json;charset=utf-8");
+                response.getWriter().write("{\"code\":401,\"msg\":\"尚未登录，请登录\"}");
+                return;
+            }
         }
+        doFilterInternal(request, response, filterChain);
     }
 }
