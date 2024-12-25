@@ -1,5 +1,6 @@
 package com.rosy.minervia.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.rosy.common.constant.CacheConstants;
 import com.rosy.common.core.redis.RedisCache;
 import com.rosy.common.utils.uuid.UUID;
@@ -7,13 +8,14 @@ import com.rosy.minervia.config.properties.MpProperties;
 import com.rosy.minervia.domain.WxLogin;
 import com.rosy.minervia.mapper.WxLoginMapper;
 import com.rosy.minervia.service.IWxLoginService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -28,8 +30,6 @@ import java.util.concurrent.TimeUnit;
 @Service
 @EnableConfigurationProperties(MpProperties.class)
 public class WxLoginServiceImpl extends ServiceImpl<WxLoginMapper, WxLogin> implements IWxLoginService {
-    @Autowired
-    RestTemplate restTemplate;
 
     @Autowired
     MpProperties mpProperties;
@@ -37,15 +37,26 @@ public class WxLoginServiceImpl extends ServiceImpl<WxLoginMapper, WxLogin> impl
     @Autowired
     RedisCache redisCache;
 
+    @Autowired
+    WebClient webClient;
+
     @Override
     public WxLogin login(String jsCode) {
-        Map<String, String> params = Map.of(
-                "js_code", jsCode,
-                "appid", mpProperties.getAppId(),
-                "secret", mpProperties.getAppSecret(),
-                "grant_type", mpProperties.getAppId()
-        );
-        WxLogin wxLogin = restTemplate.getForObject(mpProperties.getLoginUrl(), WxLogin.class, params);
+        WxLogin wxLogin = webClient
+                .get()
+                .uri(
+                        uriBuilder -> uriBuilder
+                                .path(mpProperties.getLoginUrl())
+                                .queryParam("js_code", jsCode)
+                                .queryParam("appid", mpProperties.getAppId())
+                                .queryParam("secret", mpProperties.getAppSecret())
+                                .queryParam("grant_type", mpProperties.getAppId())
+                                .build()
+                )
+                .retrieve()
+                .bodyToMono(WxLogin.class)
+                .block();
+
         assert wxLogin != null;
         if (wxLogin.getErrcode() == null || (wxLogin.getOpenid() != null && !wxLogin.getOpenid().isEmpty())) {
             //成功

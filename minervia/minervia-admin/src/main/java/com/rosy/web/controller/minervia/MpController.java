@@ -1,6 +1,5 @@
 package com.rosy.web.controller.minervia;
 
-import com.rosy.common.core.controller.BaseController;
 import com.rosy.common.core.domain.AjaxResult;
 import com.rosy.minervia.domain.WxLogin;
 import com.rosy.minervia.service.IWxLoginService;

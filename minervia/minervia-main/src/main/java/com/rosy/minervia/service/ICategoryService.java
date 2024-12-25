@@ -1,11 +1,11 @@
 package com.rosy.minervia.service;
 
-import com.rosy.minervia.domain.Category;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.rosy.minervia.domain.Category;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author Rosy

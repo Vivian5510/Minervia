@@ -1,11 +1,11 @@
 package com.rosy.minervia.mapper;
 
-import com.rosy.minervia.domain.Records;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.rosy.minervia.domain.Records;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author Rosy

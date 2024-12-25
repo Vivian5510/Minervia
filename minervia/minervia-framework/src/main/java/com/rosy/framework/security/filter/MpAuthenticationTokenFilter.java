@@ -1,6 +1,5 @@
 package com.rosy.framework.security.filter;
 
-import com.fasterxml.jackson.core.filter.TokenFilter;
 import com.rosy.common.constant.CacheConstants;
 import com.rosy.common.core.redis.RedisCache;
 import com.rosy.minervia.domain.WxLogin;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 @Component
 public class MpAuthenticationTokenFilter extends OncePerRequestFilter {
