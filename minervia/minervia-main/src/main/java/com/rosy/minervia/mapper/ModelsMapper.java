@@ -1,7 +1,7 @@
 package com.rosy.minervia.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.rosy.minervia.domain.Models;
+import com.rosy.minervia.domain.entity.Models;
 
 /**
  * <p>

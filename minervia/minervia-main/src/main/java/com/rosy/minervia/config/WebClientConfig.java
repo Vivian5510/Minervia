@@ -1,7 +1,9 @@
 package com.rosy.minervia.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.http.codec.json.Jackson2JsonDecoder;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -9,12 +11,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class WebClientConfig {
     @Bean
-    public WebClient webClient(WebClient.Builder builder) {
+    public WebClient webClient(WebClient.Builder builder, ObjectMapper objectMapper) {
         return builder
                 .exchangeStrategies(ExchangeStrategies.builder()
                         .codecs(configurer -> {
-                            // 配置 WebClient 以支持处理 text/plain 格式的 JSON
-                            configurer.defaultCodecs().jackson2JsonDecoder(new Jackson2JsonDecoder());
+                            configurer.customCodecs().registerWithDefaultConfig(new Jackson2JsonDecoder(objectMapper, MediaType.TEXT_PLAIN));
                         })
                         .build())
                 .build();

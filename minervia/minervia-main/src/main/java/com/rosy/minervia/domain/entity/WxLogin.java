@@ -1,12 +1,14 @@
-package com.rosy.minervia.domain;
+package com.rosy.minervia.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -18,6 +20,8 @@ import java.time.LocalDateTime;
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @TableName("wx_login")
 public class WxLogin implements Serializable {
 
@@ -44,8 +48,8 @@ public class WxLogin implements Serializable {
     private String errmsg;
 
     @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createTime;
+    private Date createTime;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime updateTime;
+    private Date updateTime;
 }

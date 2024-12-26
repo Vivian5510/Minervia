@@ -2,7 +2,7 @@ package com.rosy.framework.security.filter;
 
 import com.rosy.common.constant.CacheConstants;
 import com.rosy.common.core.redis.RedisCache;
-import com.rosy.minervia.domain.WxLogin;
+import com.rosy.minervia.domain.entity.WxLogin;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,6 +20,8 @@ public class MpAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        //TODO: 防止用户重复登录
+        
         String requestURI = request.getRequestURI();
         if (requestURI.contains("/mp") && !requestURI.contains("/mp/login")) {
             WxLogin wxLogin = redisCache.getCacheObject(CacheConstants.WX_LOGIN_TOKEN_KEY + request.getHeader("mp-token"));
@@ -29,6 +31,6 @@ public class MpAuthenticationTokenFilter extends OncePerRequestFilter {
                 return;
             }
         }
-        doFilterInternal(request, response, filterChain);
+        doFilter(request, response, filterChain);
     }
 }

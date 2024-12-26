@@ -1,7 +1,10 @@
 package com.rosy.framework.config;
 
+import com.baomidou.mybatisplus.core.config.GlobalConfig;
+import com.baomidou.mybatisplus.core.toolkit.GlobalConfigUtils;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.rosy.common.utils.StringUtils;
+import com.rosy.minervia.handler.CustomMetaObjectHandler;
 import org.apache.ibatis.io.VFS;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
@@ -106,6 +109,11 @@ public class MyBatisConfig {
         sessionFactory.setTypeAliasesPackage(typeAliasesPackage);
         sessionFactory.setMapperLocations(resolveMapperLocations(StringUtils.split(mapperLocations, ",")));
         sessionFactory.setConfigLocation(new DefaultResourceLoader().getResource(configLocation));
+        //获取mybatis-plus全局配置
+        GlobalConfig globalConfig = GlobalConfigUtils.defaults();
+        //mybatis-plus全局配置设置元数据对象处理器为自己实现的那个
+        globalConfig.setMetaObjectHandler(new CustomMetaObjectHandler());
+        sessionFactory.setGlobalConfig(globalConfig);
         return sessionFactory.getObject();
     }
 }

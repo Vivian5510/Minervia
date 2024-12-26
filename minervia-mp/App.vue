@@ -1,7 +1,11 @@
 <script>
+	import {
+		login
+	} from './utils/api.js'
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
+			login()
 		},
 		onShow: function() {
 			console.log('App Show')

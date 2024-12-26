@@ -1,22 +1,21 @@
 package com.rosy.minervia.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.rosy.common.constant.CacheConstants;
 import com.rosy.common.core.redis.RedisCache;
 import com.rosy.common.utils.uuid.UUID;
 import com.rosy.minervia.config.properties.MpProperties;
-import com.rosy.minervia.domain.WxLogin;
+import com.rosy.minervia.domain.entity.WxLogin;
 import com.rosy.minervia.mapper.WxLoginMapper;
 import com.rosy.minervia.service.IWxLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Collections;
-import java.util.Map;
+import java.net.URI;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -42,28 +41,36 @@ public class WxLoginServiceImpl extends ServiceImpl<WxLoginMapper, WxLogin> impl
 
     @Override
     public WxLogin login(String jsCode) {
+        // 构建 URI
+        URI uri = UriComponentsBuilder.fromUriString(mpProperties.getLoginUrl())  // 从基础 URL 构建
+                .queryParam("js_code", jsCode)
+                .queryParam("appid", mpProperties.getAppId())
+                .queryParam("secret", mpProperties.getAppSecret())
+                .queryParam("grant_type", "authorization_code")  // 使用正确的 grant_type
+                .build()
+                .toUri();  // 转换为 URI 对象
+
+        // 使用 RestTemplate 发送请求
         WxLogin wxLogin = webClient
                 .get()
-                .uri(
-                        uriBuilder -> uriBuilder
-                                .path(mpProperties.getLoginUrl())
-                                .queryParam("js_code", jsCode)
-                                .queryParam("appid", mpProperties.getAppId())
-                                .queryParam("secret", mpProperties.getAppSecret())
-                                .queryParam("grant_type", mpProperties.getAppId())
-                                .build()
-                )
+                .uri(uri)
                 .retrieve()
                 .bodyToMono(WxLogin.class)
                 .block();
-
         assert wxLogin != null;
         if (wxLogin.getErrcode() == null || (wxLogin.getOpenid() != null && !wxLogin.getOpenid().isEmpty())) {
             //成功
+            LambdaQueryWrapper<WxLogin> queryWrapper = new LambdaQueryWrapper<>();
+            queryWrapper.eq(WxLogin::getOpenid, wxLogin.getOpenid());
+            WxLogin existedUser = getOne(queryWrapper);
+            wxLogin.setId(existedUser == null ? null : existedUser.getId());
             saveOrUpdate(wxLogin);
-            save2Redis(wxLogin);
+            
             wxLogin.setSessionKey(UUID.randomUUID().toString());
+            save2Redis(wxLogin);
         }
+
+
         return wxLogin;
     }
 

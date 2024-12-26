@@ -1,11 +1,13 @@
-package com.rosy.minervia.domain;
+package com.rosy.minervia.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -17,8 +19,10 @@ import java.time.LocalDateTime;
  */
 @Data
 @Builder
-@TableName("minervia_category")
-public class Category implements Serializable {
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName("minervia_banner")
+public class Banner implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,28 +30,28 @@ public class Category implements Serializable {
     private Integer id;
 
     /**
-     * 宫格中的文本
+     * 图片路径
      */
-    private String text;
+    private String image;
 
     /**
-     * 宫格中的图片地址
+     * banner中的标题
      */
-    private String src;
+    private String title;
 
     /**
-     * 宫格技术名称
+     * 点击banner图片跳转路径
      */
-    private String name;
+    private String url;
 
     @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createTime;
+    private Date createTime;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
     /**
-     * 1正常 0删除
+     * 1 正常 0 删除
      */
     @TableLogic
     private Integer delFlag;
@@ -56,9 +60,4 @@ public class Category implements Serializable {
      * 排序字段
      */
     private Integer orderNum;
-
-    /**
-     * 是否启用
-     */
-    private Boolean enable;
 }

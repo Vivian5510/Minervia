@@ -1,7 +1,9 @@
 package com.rosy.minervia.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.rosy.minervia.domain.Category;
+import com.rosy.minervia.domain.entity.Category;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.rosy.minervia.domain.Category;
  */
 public interface ICategoryService extends IService<Category> {
 
+    List<Category> getAllCategories();
 }

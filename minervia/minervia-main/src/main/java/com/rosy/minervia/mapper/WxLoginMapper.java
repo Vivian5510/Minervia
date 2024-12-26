@@ -1,7 +1,7 @@
 package com.rosy.minervia.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.rosy.minervia.domain.WxLogin;
+import com.rosy.minervia.domain.entity.WxLogin;
 
 /**
  * <p>

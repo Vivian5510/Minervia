@@ -1,7 +1,7 @@
 package com.rosy.minervia.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.rosy.minervia.domain.Records;
+import com.rosy.minervia.domain.entity.Records;
 import com.rosy.minervia.mapper.RecordsMapper;
 import com.rosy.minervia.service.IRecordsService;
 import org.springframework.stereotype.Service;
