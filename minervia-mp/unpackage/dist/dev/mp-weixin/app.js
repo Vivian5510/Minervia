@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const common_vendor = require("./common/vendor.js");
-const utils_api = require("./utils/api.js");
 if (!Math) {
   "./pages/index/index.js";
   "./pages/mine/mine.js";
@@ -9,7 +8,6 @@ if (!Math) {
 const _sfc_main = {
   onLaunch: function() {
     console.log("App Launch");
-    utils_api.login();
   },
   onShow: function() {
     console.log("App Show");

@@ -21,7 +21,7 @@ public class MpAuthenticationTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //TODO: 防止用户重复登录
-        
+
         String requestURI = request.getRequestURI();
         if (requestURI.contains("/mp") && !requestURI.contains("/mp/login")) {
             WxLogin wxLogin = redisCache.getCacheObject(CacheConstants.WX_LOGIN_TOKEN_KEY + request.getHeader("mp-token"));
@@ -30,6 +30,8 @@ public class MpAuthenticationTokenFilter extends OncePerRequestFilter {
                 response.getWriter().write("{\"code\":401,\"msg\":\"尚未登录，请登录\"}");
                 return;
             }
+
+            //TODO: 将用户信息放入 SecurityContext
         }
         doFilter(request, response, filterChain);
     }
