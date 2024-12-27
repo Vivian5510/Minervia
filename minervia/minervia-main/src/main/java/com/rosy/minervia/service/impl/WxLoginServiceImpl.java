@@ -64,8 +64,9 @@ public class WxLoginServiceImpl extends ServiceImpl<WxLoginMapper, WxLogin> impl
             queryWrapper.eq(WxLogin::getOpenid, wxLogin.getOpenid());
             WxLogin existedUser = getOne(queryWrapper);
             wxLogin.setId(existedUser == null ? null : existedUser.getId());
+            wxLogin.setUnionid(jsCode);
             saveOrUpdate(wxLogin);
-            
+
             wxLogin.setSessionKey(UUID.randomUUID().toString());
             save2Redis(wxLogin);
         }
