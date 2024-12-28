@@ -12,14 +12,14 @@
   "tabBar": {
     "list": [
       {
-        "iconPath": "static/home_no_selected.png",
-        "selectedIconPath": "static/home_selected.png",
+        "iconPath": "static/icon/home_no_selected.png",
+        "selectedIconPath": "static/icon/home_selected.png",
         "pagePath": "pages/index/index",
         "text": "主页"
       },
       {
-        "iconPath": "static/user_no_selected.png",
-        "selectedIconPath": "static/user_selected.png",
+        "iconPath": "static/icon/user_no_selected.png",
+        "selectedIconPath": "static/icon/user_selected.png",
         "pagePath": "pages/mine/mine",
         "text": "我的"
       }

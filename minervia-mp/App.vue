@@ -13,5 +13,5 @@
 </script>
 
 <style>
-	/*每个页面公共css */
+	@import '@/uni_modules/tuniaoui-vue3/index.css';
 </style>

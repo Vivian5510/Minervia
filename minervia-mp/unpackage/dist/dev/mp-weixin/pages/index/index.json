@@ -1,4 +1,8 @@
 {
   "navigationBarTitleText": "Minervia-AI面试官",
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-grid-item": "../../uni_modules/uni-grid/components/uni-grid-item/uni-grid-item",
+    "uni-grid": "../../uni_modules/uni-grid/components/uni-grid/uni-grid",
+    "tn-swiper": "../../uni_modules/tuniaoui-vue3/components/swiper/src/swiper"
+  }
 }

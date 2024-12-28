@@ -17,7 +17,7 @@ CREATE TABLE `minervia_banner`
     `url`         VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '点击banner图片跳转路径',
     `create_time` DATETIME     NOT NULL                                         DEFAULT CURRENT_TIMESTAMP,
     `update_time` DATETIME     NOT NULL                                         DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `del_flag`    INT                                                           DEFAULT 1 COMMENT '1 正常 0 删除',
+    `del_flag`    INT                                                           DEFAULT 0 COMMENT '0 正常 1 删除',
     `order_num`   INT                                                           DEFAULT NULL COMMENT '排序字段',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
@@ -25,6 +25,14 @@ CREATE TABLE `minervia_banner`
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_unicode_ci
   ROW_FORMAT = DYNAMIC;
+
+INSERT INTO `minervia_banner` (`image`, `title`, `url`, `order_num`)
+VALUES ('https://resource.tuniaokj.com/images/xiongjie/x14.jpg', 'Banner Title 1', 'https://example.com/1', 1),
+       ('https://resource.tuniaokj.com/images/xiongjie/xiong-3d-2.jpg', 'Banner Title 2', 'https://example.com/2', 2),
+       ('https://resource.tuniaokj.com/images/xiongjie/xiong-3d-new.jpg', 'Banner Title 3', 'https://example.com/3', 3),
+       ('https://resource.tuniaokj.com/images/xiongjie/xiong-3d-new1.png', 'Banner Title 3', 'https://example.com/3',
+        4);
+
 
 
 -- -------------------------------------------------
@@ -39,7 +47,7 @@ CREATE TABLE `minervia_category`
     `name`        VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '宫格技术名称',
     `create_time` DATETIME     NOT NULL                                         DEFAULT CURRENT_TIMESTAMP,
     `update_time` DATETIME     NOT NULL                                         DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `del_flag`    INT                                                           DEFAULT 1 COMMENT '1正常 0删除',
+    `del_flag`    INT                                                           DEFAULT 0 COMMENT '0 正常 1 删除',
     `order_num`   INT                                                           DEFAULT NULL COMMENT '排序字段',
     `enable`      TINYINT(1)                                                    DEFAULT 1 COMMENT '是否启用',
     PRIMARY KEY (`id`) USING BTREE
@@ -48,6 +56,26 @@ CREATE TABLE `minervia_category`
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_unicode_ci
   ROW_FORMAT = DYNAMIC;
+
+INSERT INTO `minervia_category` (`text`, `src`, `name`, `order_num`, `del_flag`, `enable`)
+VALUES ('人工智能', 'http://sogoqjp87.hn-bkt.clouddn.com/2024/12/14/iconly-icon-export-1735205458.png', 'AI', 1, 0, 1),
+       ('机器学习', 'http://sogoqjp87.hn-bkt.clouddn.com/2024/12/14/iconly-icon-export-1735205461.png',
+        'Machine Learning', 2, 0, 1),
+       ('深度学习', 'http://sogoqjp87.hn-bkt.clouddn.com/2024/12/14/iconly-icon-export-1735205469.png', 'Deep Learning',
+        3, 0, 1),
+       ('自然语言处理', 'http://sogoqjp87.hn-bkt.clouddn.com/2024/12/14/iconly-icon-export-1735205477.png',
+        'Natural Language Processing', 4, 0, 1),
+       ('计算机视觉', 'http://sogoqjp87.hn-bkt.clouddn.com/2024/12/14/iconly-icon-export-1735205493.png',
+        'Computer Vision', 5, 0, 1),
+       ('数据挖掘', 'http://sogoqjp87.hn-bkt.clouddn.com/2024/12/14/iconly-icon-export-1735205510.png', 'Data Mining',
+        6, 0, 1),
+       ('云计算', 'http://sogoqjp87.hn-bkt.clouddn.com/2024/12/14/iconly-icon-export-1735205500.png', 'Cloud Computing',
+        7, 0, 1),
+       ('边缘计算', 'http://sogoqjp87.hn-bkt.clouddn.com/2024/12/14/iconly-icon-export-1735205507.png',
+        'Edge Computing', 8, 0, 1),
+       ('物联网', 'http://sogoqjp87.hn-bkt.clouddn.com/2024/12/14/iconly-icon-export-1735205480.png',
+        'Internet of Things', 9, 0, 1);
+
 
 
 -- ------------------------------------------------------
@@ -61,7 +89,7 @@ CREATE TABLE `minervia_category_item`
     `value`       VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '下拉框具体的值',
     `create_time` DATETIME     NOT NULL                                         DEFAULT CURRENT_TIMESTAMP,
     `update_time` DATETIME     NOT NULL                                         DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `del_flag`    INT                                                           DEFAULT 1 COMMENT '1 正常 0 删除',
+    `del_flag`    INT                                                           DEFAULT 0 COMMENT '0 正常 1 删除',
     `category`    VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '所属的技术分类',
     `order_num`   INT                                                           DEFAULT NULL COMMENT '排序字段',
     PRIMARY KEY (`id`) USING BTREE,
@@ -88,7 +116,7 @@ CREATE TABLE `minervia_records`
     `openid`      VARCHAR(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  DEFAULT NULL COMMENT '用户唯一ID',
     `category`    VARCHAR(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  DEFAULT NULL COMMENT '具体的技术分类，关联category_item',
     `subject`     VARCHAR(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  DEFAULT NULL COMMENT '面试科目，关联category',
-    `del_flag`    INT                                                           DEFAULT 1 COMMENT '1 正常 0 删除',
+    `del_flag`    INT                                                           DEFAULT 0 COMMENT '0 正常 1 删除',
     PRIMARY KEY (`id`) USING BTREE,
     INDEX `session_id` (`session_id` ASC) USING BTREE
 ) ENGINE = InnoDB
@@ -112,7 +140,7 @@ CREATE TABLE `minervia_models`
     `role`            TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci         DEFAULT NULL COMMENT 'AI模型的身份设定',
     `create_time`     DATETIME     NOT NULL                                         DEFAULT CURRENT_TIMESTAMP,
     `update_time`     DATETIME     NOT NULL                                         DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `del_flag`        INT                                                           DEFAULT 1 COMMENT '1 正常 0 删除',
+    `del_flag`        INT                                                           DEFAULT 0 COMMENT '0 正常 1 删除',
     `charge`          INT                                                           DEFAULT 0 COMMENT '0 免费 1 收费',
     `multiple`        INT                                                           DEFAULT 0 COMMENT '0 单轮对话 1 多轮对话',
     `order_num`       INT                                                           DEFAULT NULL COMMENT '排序字段',
