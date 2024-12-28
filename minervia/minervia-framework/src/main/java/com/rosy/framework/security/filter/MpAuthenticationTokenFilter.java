@@ -27,19 +27,20 @@ public class MpAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        //TODO: 防止用户重复登录
-
+        System.out.println("MpAuthenticationTokenFilter");
         String requestURI = request.getRequestURI();
         if (requestURI.contains("/mp")) {
             if (requestURI.contains("/mp/login")) {
                 String jsCode = request.getParameter("js_code");
                 LambdaQueryWrapper<WxLogin> queryWrapper = new LambdaQueryWrapper<>();
                 queryWrapper.eq(WxLogin::getUnionid, jsCode);
-                long login_expire_time = wxLoginService.getOne(queryWrapper).getUpdateTime().getTime() + 3600 * 1000;
-                if (System.currentTimeMillis() < login_expire_time) {
-                    response.setContentType("application/json;charset=utf-8");
-                    response.getWriter().write("{\"code\":401,\"msg\":\"登录过于频繁，请勿重复登录，或稍后重试\"}");
-                    return;
+                if (wxLoginService.getOne(queryWrapper) != null) {
+                    long login_expire_time = wxLoginService.getOne(queryWrapper).getUpdateTime().getTime() + 3600 * 1000;
+                    if (System.currentTimeMillis() < login_expire_time) {
+                        response.setContentType("application/json;charset=utf-8");
+                        response.getWriter().write("{\"code\":401,\"msg\":\"登录过于频繁，请勿重复登录，或稍后重试\"}");
+                        return;
+                    }
                 }
             } else {
                 WxLogin wxLogin = redisCache.getCacheObject(CacheConstants.WX_LOGIN_TOKEN_KEY + request.getHeader("mp-token"));
@@ -48,12 +49,6 @@ public class MpAuthenticationTokenFilter extends OncePerRequestFilter {
                     response.getWriter().write("{\"code\":401,\"msg\":\"尚未登录，请登录\"}");
                     return;
                 }
-
-                //将openid放入 SecurityContext
-                LoginUser loginUser = new LoginUser();
-                loginUser.setUserId(Long.parseLong(wxLogin.getOpenid()));
-                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUser, null, loginUser.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }
         }
         doFilter(request, response, filterChain);
