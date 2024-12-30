@@ -5,11 +5,11 @@
 			autoplay loop indicator indicator-type="dot">
 			<template #default="{ data, active }">
 				<view class="swiper-data swiper-data.animation" :class="[{ active }]">
-					<image class="swiper-image" :src="data.image" mode="aspectFill" />
+					<image class="swiper-image" :src="data.image" mode="aspectFill" @click="bannerClick(data.url)" />
 				</view>
 			</template>
 		</TnSwiper>
-		<uni-grid :column="3" :showBorder="false" :square="false">
+		<uni-grid :column="3" :showBorder="false" :square="false" @change="gridItemClick">
 			<uni-grid-item v-for="(category, index) in categories" :index="index" :key="index">
 				<view class="grid-container">
 					<image class="grid-image" :src="category.src" mode="aspectFill"></image>
@@ -42,6 +42,33 @@
 
 	//宫格数据
 	let categories = ref([])
+
+	function bannerClick(url) {
+		uni.setStorage({
+			key: wvUrl,
+			data: url,
+			success: () => {
+				uni.navigateTo({
+					url: '/pages/webview/webview'
+				})
+			}
+		})
+	}
+
+	function gridItemClick(event) {
+		let category = categories.value[event.detail.index]
+		if (category.enable) {
+			uni.navigateTo({
+				url: '/pages/interview/interview?category' + category.name
+			})
+		} else {
+			uni.showToast({
+				duration: 2000
+				title: '快马加鞭开发中'
+				icon: 'none'
+			})
+		}
+	}
 
 	onLoad(() => {
 		uni.getStorage({

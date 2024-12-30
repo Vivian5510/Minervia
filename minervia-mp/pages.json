@@ -11,6 +11,18 @@
 			"style": {
 				"navigationBarTitleText": "Minervia-AI面试官"
 			}
+		},
+		{
+			"path": "pages/webview/webview",
+			"style": {
+				"navigationBarTitleText": "Minervia-AI面试官"
+			}
+		},
+		{
+			"path": "pages/interview/interview",
+			"style": {
+				"navigationBarTitleText": "Minervia-AI面试官"
+			}
 		}
 	],
 	"globalStyle": {
