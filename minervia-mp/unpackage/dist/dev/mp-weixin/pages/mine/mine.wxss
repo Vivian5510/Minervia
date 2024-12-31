@@ -1,0 +1,146 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.top.data-v-7c2ebfa5 {
+  height: 250rpx;
+  position: relative;
+}
+.top .background.data-v-7c2ebfa5 {
+  border-bottom-left-radius: 22px;
+  border-bottom-right-radius: 22px;
+  position: absolute;
+  height: 360rpx;
+  width: 100%;
+}
+.click-view.data-v-7c2ebfa5 {
+  background-color: #dbe2f3;
+  color: #d4d6da;
+}
+.icon.data-v-7c2ebfa5 {
+  color: #96a1ae;
+  font-size: 20rpx;
+}
+.user-card.data-v-7c2ebfa5 {
+  height: 170rpx;
+  padding: 0px 15px;
+}
+.user-card .card.data-v-7c2ebfa5 {
+  position: relative;
+  bottom: 62px;
+  height: 250rpx;
+  background-color: white;
+  border-radius: 5px;
+}
+.user-card .card .top.data-v-7c2ebfa5 {
+  height: 50%;
+  position: relative;
+}
+.user-card .card .top .userImage.data-v-7c2ebfa5 {
+  position: absolute;
+  bottom: 24%;
+  left: 10%;
+  width: 150rpx;
+  height: 150rpx;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+.user-card .card .bottom.data-v-7c2ebfa5 {
+  display: flex;
+  height: 70%;
+}
+.user-card .card .bottom .left.data-v-7c2ebfa5 {
+  width: 80%;
+  height: 100%;
+  position: relative;
+}
+.user-card .card .bottom .left .user-text.data-v-7c2ebfa5 {
+  width: 100%;
+  font-size: 1.6em;
+  height: 50%;
+  padding-left: 80rpx;
+}
+.user-card .card .bottom .left .user-phone.data-v-7c2ebfa5 {
+  color: #96a1ae;
+  padding-left: 80rpx;
+  width: 100%;
+  font-size: 1.2em;
+}
+.user-card .card .bottom .right.data-v-7c2ebfa5 {
+  width: 20%;
+  height: 50%;
+}
+.list-card.data-v-7c2ebfa5 {
+  padding: 0 15px;
+}
+.list-card .card.data-v-7c2ebfa5 {
+  border-radius: 5px;
+  position: relative;
+  background-color: white;
+  border-radius: 5px;
+  padding: 0px 30px;
+}
+.list-card .card .item.data-v-7c2ebfa5 {
+  display: flex;
+  height: 120rpx;
+}
+.list-card .card .item .left.data-v-7c2ebfa5 {
+  width: 15%;
+}
+.list-card .card .item .left image.data-v-7c2ebfa5 {
+  width: 70rpx;
+  height: 70rpx;
+}
+.list-card .card .item .center.data-v-7c2ebfa5 {
+  width: 65%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-size: 1.1em;
+}
+.list-card .card .item .right.data-v-7c2ebfa5 {
+  width: 20%;
+  justify-content: flex-end;
+}
+.item-bottom-solid.data-v-7c2ebfa5 {
+  border-bottom: 1px solid #d4d6da;
+}
+.quit.data-v-7c2ebfa5 {
+  height: 100rpx;
+  margin-top: 100px;
+}
+.quit .btn.data-v-7c2ebfa5 {
+  background-color: #4f99ff;
+  border-radius: 30px;
+  width: 80%;
+  color: white;
+  font-size: 1.2em;
+  height: 100%;
+}
+.flex-center.data-v-7c2ebfa5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

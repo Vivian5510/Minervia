@@ -18,6 +18,33 @@ const _sfc_main = {
     let currentSwiperIndex = common_vendor.ref(0);
     let banners = common_vendor.ref([]);
     let categories = common_vendor.ref([]);
+    function bannerClick(url) {
+      console.log(url);
+      common_vendor.index.setStorage({
+        key: "wvUrl",
+        data: url,
+        success: () => {
+          console.log(url);
+          common_vendor.index.navigateTo({
+            url: "/pages/webview/webview"
+          });
+        }
+      });
+    }
+    function gridItemClick(event) {
+      let category = categories.value[event.detail.index];
+      if (category.enable) {
+        common_vendor.index.navigateTo({
+          url: "/pages/interview/interview?category" + category.name
+        });
+      } else {
+        common_vendor.index.showToast({
+          duration: 2e3,
+          title: "快马加鞭开发中",
+          icon: "none"
+        });
+      }
+    }
     common_vendor.onLoad(() => {
       common_vendor.index.getStorage({
         key: "banners",
@@ -64,11 +91,12 @@ const _sfc_main = {
         }, s0, i0) => {
           return {
             a: data.image,
-            b: common_vendor.n({
+            b: common_vendor.o(($event) => bannerClick(data.url)),
+            c: common_vendor.n({
               active
             }),
-            c: i0,
-            d: s0
+            d: i0,
+            e: s0
           };
         }, {
           name: "d",
@@ -97,7 +125,8 @@ const _sfc_main = {
             })
           };
         }),
-        e: common_vendor.p({
+        e: common_vendor.o(gridItemClick),
+        f: common_vendor.p({
           column: 3,
           showBorder: false,
           square: false

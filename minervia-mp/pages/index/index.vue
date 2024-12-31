@@ -44,10 +44,12 @@
 	let categories = ref([])
 
 	function bannerClick(url) {
+		console.log(url)
 		uni.setStorage({
-			key: wvUrl,
+			key: 'wvUrl',
 			data: url,
 			success: () => {
+				console.log(url)
 				uni.navigateTo({
 					url: '/pages/webview/webview'
 				})
@@ -63,8 +65,8 @@
 			})
 		} else {
 			uni.showToast({
-				duration: 2000
-				title: '快马加鞭开发中'
+				duration: 2000,
+				title: '快马加鞭开发中',
 				icon: 'none'
 			})
 		}

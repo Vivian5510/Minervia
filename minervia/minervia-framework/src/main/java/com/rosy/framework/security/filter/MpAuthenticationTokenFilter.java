@@ -27,7 +27,6 @@ public class MpAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        System.out.println("MpAuthenticationTokenFilter");
         String requestURI = request.getRequestURI();
         if (requestURI.contains("/mp")) {
             if (requestURI.contains("/mp/login")) {

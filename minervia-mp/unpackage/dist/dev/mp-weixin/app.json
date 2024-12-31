@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/webview/webview",
+    "pages/interview/interview"
   ],
   "window": {
     "navigationBarTextStyle": "black",
