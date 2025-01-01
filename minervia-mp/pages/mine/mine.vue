@@ -30,7 +30,7 @@
 		</view>
 		<view class="list-card">
 			<view class="card">
-				<view class="item item-bottom-solid" hover-class="click-view">
+				<view class="item item-bottom-solid" hover-class="click-view" @click="itemClick('records')">
 					<view class="left flex-center">
 						<image src="@/static/icon/iconly-icon-export-1735205510.png" mode="aspectFit"></image>
 					</view>
@@ -43,7 +43,7 @@
 				</view>
 			</view>
 			<view class="card">
-				<view class="item item-bottom-solid" hover-class="click-view">
+				<view class="item item-bottom-solid" hover-class="click-view" @click="itemClick('about')">
 					<view class="left flex-center">
 						<image src="@/static/icon/iconly-icon-export-1735205493.png" mode="aspectFit"></image>
 					</view>
@@ -62,6 +62,19 @@
 			</view>
 		</view>
 	</view>
+
+	<TnPopup v-model="showPopup" open-direction="bottom" height="400rpx" radius="15px">
+		<view class="tn-p-lg tn-gradient-bg__grey-light">
+			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-4xl tn-gradient-bg__cool-8">Halo,
+				This Minervia!</div>
+			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-2xl tn-gradient-bg__teal">Developer:
+				Rosy</div>
+			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-2xl tn-gradient-bg__yellow">
+				Contact: github.com/Vivian5510</div>
+			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-2xl tn-gradient-bg__orange">Version:
+				0.0.1</div>
+		</view>
+	</TnPopup>
 </template>
 <style lang="scss" scoped>
 	.top {
@@ -211,24 +224,19 @@
 	}
 </style>
 
-<script>
-	//import {  } from "@/common/api/{$}.js";
-	export default {
-		data() {
-			return {};
-		},
-		//监听页面初始化，其参数同 onLoad 参数，为上个页面传递的数据，参数类型为 Object（用于页面传参），触发时机早于 onLoad
-		onInit() {},
-		//监听页面加载，其参数为上个页面传递的数据，参数类型为 Object（用于页面传参）
-		onLoad() {},
-		//监听页面初次渲染完成。注意如果渲染速度快，会在页面进入动画完成前触发
-		onReady() {},
-		//监听页面显示。页面每次出现在屏幕上都触发，包括从下级页面点返回露出当前页面
-		beforeDestroy() {},
-		//页面滚动到底部的事件（不是scroll-view滚到底），常用于下拉下一页数据。
-		onReachBottom() {},
-		onShareAppMessage(res) {},
-		created() {},
-		methods: {},
-	};
+<script setup>
+	import TnPopup from '@/uni_modules/tuniaoui-vue3/components/popup/src/popup.vue'
+	import {
+		ref
+	} from 'vue'
+
+	let showPopup = ref(false)
+
+	function itemClick(item) {
+		if (item == 'records') {
+
+		} else {
+			showPopup.value = true
+		}
+	}
 </script>

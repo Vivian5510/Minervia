@@ -47,5 +47,6 @@ const buildProps = (props) => uni_modules_tuniaouiVue3_libs_lodash_fromPairs.fro
     buildProp(option, key)
   ])
 );
+exports.buildProp = buildProp;
 exports.buildProps = buildProps;
 exports.definePropType = definePropType;
