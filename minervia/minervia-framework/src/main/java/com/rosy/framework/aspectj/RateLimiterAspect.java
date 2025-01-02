@@ -5,6 +5,7 @@ import com.rosy.common.enums.LimitType;
 import com.rosy.common.exception.ServiceException;
 import com.rosy.common.utils.StringUtils;
 import com.rosy.common.utils.ip.IpUtils;
+import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -15,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.lang.reflect.Method;
 import java.util.Collections;
@@ -68,6 +72,12 @@ public class RateLimiterAspect {
         StringBuffer stringBuffer = new StringBuffer(rateLimiter.key());
         if (rateLimiter.limitType() == LimitType.IP) {
             stringBuffer.append(IpUtils.getIpAddr()).append("-");
+        } else if (rateLimiter.limitType() == LimitType.ID) {
+            ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+            assert requestAttributes != null;
+            HttpServletRequest request = requestAttributes.getRequest();
+            String token = request.getHeader("mp-token");
+            stringBuffer.append(token).append("-");
         }
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = signature.getMethod();

@@ -13,6 +13,10 @@ public enum LimitType {
     DEFAULT,
 
     /**
+     * 根据请求者的身份认真ID进行限流
+     */
+    ID,
+    /**
      * 根据请求者IP进行限流
      */
     IP

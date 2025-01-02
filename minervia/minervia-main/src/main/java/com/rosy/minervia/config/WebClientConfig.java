@@ -15,7 +15,7 @@ public class WebClientConfig {
         return builder
                 .exchangeStrategies(ExchangeStrategies.builder()
                         .codecs(configurer -> {
-                            configurer.customCodecs().registerWithDefaultConfig(new Jackson2JsonDecoder(objectMapper, MediaType.TEXT_PLAIN));
+                            configurer.customCodecs().registerWithDefaultConfig(new Jackson2JsonDecoder(objectMapper, MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON));
                         })
                         .build())
                 .build();

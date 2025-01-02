@@ -2,7 +2,6 @@ package com.rosy.framework.security.filter;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.rosy.common.constant.CacheConstants;
-import com.rosy.common.core.domain.model.LoginUser;
 import com.rosy.common.core.redis.RedisCache;
 import com.rosy.minervia.domain.entity.WxLogin;
 import com.rosy.minervia.service.IWxLoginService;
@@ -11,10 +10,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.io.IOException;
 
