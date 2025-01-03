@@ -150,5 +150,11 @@ xss:
 mp:
   app-id: wx94e0fa43c0897d99
   app-secret: b302a9cdc90f9e4d9457e9d8694f0016
-  grant_type: authorization_code
+  grant-type: authorization_code
   login-url: https://api.weixin.qq.com/sns/jscode2session
+
+baidu-ai:
+  grant-type: client_credentials
+  client-id: sJaQIpsVzHaFBb2z4dTuWZan
+  client-secret: tzYh2QAn6x4bKui5yW1TytZHp9MCvcvi
+  access-token-url: https://aip.baidubce.com/oauth/2.0/token

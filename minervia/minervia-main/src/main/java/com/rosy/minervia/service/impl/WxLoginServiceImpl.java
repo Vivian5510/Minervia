@@ -46,7 +46,7 @@ public class WxLoginServiceImpl extends ServiceImpl<WxLoginMapper, WxLogin> impl
                 .queryParam("js_code", jsCode)
                 .queryParam("appid", mpProperties.getAppId())
                 .queryParam("secret", mpProperties.getAppSecret())
-                .queryParam("grant_type", "authorization_code")  // 使用正确的 grant_type
+                .queryParam("grant_type", mpProperties.getGrantType())  // 使用正确的 grant_type
                 .build()
                 .toUri();  // 转换为 URI 对象
 
