@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaiduAIAuthResponse {
+public class BaiduAIAuthResponseBody {
     private String refreshToken;
     private int expiresIn;
     private String sessionKey;
