@@ -5,11 +5,13 @@ import com.rosy.common.constant.AIConstants;
 import com.rosy.common.core.redis.RedisCache;
 import com.rosy.minervia.config.properties.BaiduAIProperties;
 import com.rosy.minervia.domain.dto.MpRequest;
+import com.rosy.minervia.domain.entity.AIChatMessage;
 import com.rosy.minervia.domain.entity.BaiduAIAuthResponseBody;
 import com.rosy.minervia.domain.entity.Models;
 import com.rosy.minervia.domain.vo.MpAnswer;
 import com.rosy.minervia.service.IAIService;
 import com.rosy.minervia.service.IModelsService;
+import com.rosy.minervia.service.IRecordsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -31,13 +35,15 @@ public class IAIServiceImpl implements IAIService {
     BaiduAIProperties baiduAIProperties;
     @Autowired
     IModelsService modelsService;
+    @Autowired
+    IRecordsService recordsService;
 
     /**
      * 服务端支持多轮对话，所以需要传递sessionKey
      *
-     * @param mpRequest
-     * @param sessionKey
-     * @return
+     * @param mpRequest  小程序请求
+     * @param sessionKey 会话标识
+     * @return 小程序回答
      */
     @Override
     public MpAnswer chat(MpRequest mpRequest, String sessionKey) {
@@ -46,8 +52,25 @@ public class IAIServiceImpl implements IAIService {
         //2.根据小程序传递的模型名称，去查询这个模型的信息
         Models model = getModel(mpRequest.getModelName());
         //3.读取当前对话的上下文信息
-         
+        List<AIChatMessage> messages = loadChatMessages(mpRequest.getSessionId());
         return null;
+    }
+
+    private List<AIChatMessage> loadChatMessages(String sessionId) {
+        List<AIChatMessage> messages = redisCache.getCacheList(AIConstants.AI_SESSION_PREFIX + sessionId);
+        messages = Optional.ofNullable(messages)
+                .filter(msgs -> !msgs.isEmpty())
+                .orElseGet(() -> {
+                    // 如果缓存中没有，就去数据库中查询
+                    return loadChatMessagesFromDB(sessionId);
+                });
+        return Optional.ofNullable(messages)
+                .filter(msgs -> !msgs.isEmpty())
+                .orElse(new ArrayList<>());
+    }
+
+    private List<AIChatMessage> loadChatMessagesFromDB(String sessionId) {
+        return recordsService.loadChatMessages(sessionId);
     }
 
     private Models getModel(String modelName) {

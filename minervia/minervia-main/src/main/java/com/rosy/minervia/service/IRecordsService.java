@@ -1,7 +1,10 @@
 package com.rosy.minervia.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.rosy.minervia.domain.entity.AIChatMessage;
 import com.rosy.minervia.domain.entity.Records;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.rosy.minervia.domain.entity.Records;
  */
 public interface IRecordsService extends IService<Records> {
 
+    List<AIChatMessage> loadChatMessages(String sessionId);
 }
