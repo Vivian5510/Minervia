@@ -3,6 +3,7 @@ package com.rosy.minervia.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.rosy.minervia.domain.dto.MpRequest;
 import com.rosy.minervia.domain.entity.AIChatMessage;
 import com.rosy.minervia.domain.entity.Records;
 import com.rosy.minervia.mapper.RecordsMapper;
@@ -28,5 +29,17 @@ public class RecordsServiceImpl extends ServiceImpl<RecordsMapper, Records> impl
         queryWrapper.eq(Records::getSessionId, sessionId);
         List<Records> records = list(queryWrapper);
         return BeanUtil.copyToList(records, AIChatMessage.class);
+    }
+
+    @Override
+    public boolean saveChatMessages(List<AIChatMessage> messages, MpRequest mpRequest, String openId) {
+        List<Records> records = BeanUtil.copyToList(messages, Records.class);
+        return saveBatch(records.stream().peek(record -> {
+                    record.setOpenid(openId);
+                    record.setSessionId(mpRequest.getSessionId());
+                    record.setCategory(mpRequest.getContent());
+                    record.setSubject(mpRequest.getSubject());
+                }).toList()
+        );
     }
 }

@@ -17,6 +17,11 @@ public class MpRequest {
     private String content;
 
     /**
+     * 面试题分类名
+     */
+    private String subject;
+
+    /**
      * 会话ID
      * 一道完整的题目是一个会话，会话ID用来标识这个会话
      */

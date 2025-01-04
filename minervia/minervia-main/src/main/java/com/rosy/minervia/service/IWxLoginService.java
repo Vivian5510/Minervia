@@ -14,4 +14,6 @@ import com.rosy.minervia.domain.entity.WxLogin;
 public interface IWxLoginService extends IService<WxLogin> {
 
     WxLogin login(String jsCode);
+
+    String getOpenIdBySessionKey(String sessionKey);
 }

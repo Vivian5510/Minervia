@@ -5,13 +5,12 @@ import com.rosy.common.constant.AIConstants;
 import com.rosy.common.core.redis.RedisCache;
 import com.rosy.minervia.config.properties.BaiduAIProperties;
 import com.rosy.minervia.domain.dto.MpRequest;
-import com.rosy.minervia.domain.entity.AIChatMessage;
-import com.rosy.minervia.domain.entity.BaiduAIAuthResponseBody;
-import com.rosy.minervia.domain.entity.Models;
+import com.rosy.minervia.domain.entity.*;
 import com.rosy.minervia.domain.vo.MpAnswer;
 import com.rosy.minervia.service.IAIService;
 import com.rosy.minervia.service.IModelsService;
 import com.rosy.minervia.service.IRecordsService;
+import com.rosy.minervia.service.IWxLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
@@ -36,6 +35,8 @@ public class IAIServiceImpl implements IAIService {
     @Autowired
     IModelsService modelsService;
     @Autowired
+    IWxLoginService wxLoginService;
+    @Autowired
     IRecordsService recordsService;
 
     /**
@@ -47,13 +48,65 @@ public class IAIServiceImpl implements IAIService {
      */
     @Override
     public MpAnswer chat(MpRequest mpRequest, String sessionKey) {
+        String openId = wxLoginService.getOpenIdBySessionKey(sessionKey);
+
         //1.先去进行AI大模型调用认证
         String accessToken = getAccessToken();
         //2.根据小程序传递的模型名称，去查询这个模型的信息
         Models model = getModel(mpRequest.getModelName());
         //3.读取当前对话的上下文信息
         List<AIChatMessage> messages = loadChatMessages(mpRequest.getSessionId());
-        return null;
+        //4.构建请求参数
+        String content;
+        if (AIConstants.AI_MESSAGE_TYPE_QUESTION.equals(mpRequest.getType())) {
+            content = String.format(model.getQuestionPrompt(), mpRequest.getContent());
+        } else if (AIConstants.AI_MESSAGE_TYPE_ANSWER.equals(mpRequest.getType())) {
+            content = String.format(model.getAnswerPrompt(), mpRequest.getContent());
+        } else {
+            throw new RuntimeException("未知的消息类型");
+        }
+        messages.add(AIChatMessage.builder()
+                .role(AIConstants.AI_ROLE_USER)
+                .content(content)
+                .build());
+        //5.发起请求 调用AI接口
+        URI uri = UriComponentsBuilder.fromUriString(model.getUrl())
+                .queryParam("access_token", accessToken)
+                .build()
+                .toUri();
+        AIResponseBody aiResponseBody = webClient
+                .post()
+                .uri(uri)
+                .bodyValue(AIRequestBody.builder()
+                        .messages(messages)
+                        .system(model.getRole())
+                        .userId(openId)
+                        .build())
+                .retrieve()
+                .bodyToMono(AIResponseBody.class)
+                .block();
+        AIChatMessage answer = AIChatMessage.builder()
+                .role(AIConstants.AI_ROLE_ASSISTANT)
+                .content(Optional.ofNullable(aiResponseBody)
+                        .map(AIResponseBody::getResult)
+                        .orElse(""))
+                .build();
+        messages.add(answer);
+
+        //6.保存对话信息
+        saveMessages(messages.subList(messages.size() - 2, messages.size()), mpRequest, openId);
+
+        return MpAnswer.builder()
+                .type(AIConstants.QUESTION_TYPE_CHOICE)
+                .content(answer.getContent())
+                .build();
+    }
+
+    private void saveMessages(List<AIChatMessage> messages, MpRequest mpRequest, String openId) {
+        // 保存到缓存
+        redisCache.setCacheList(AIConstants.AI_SESSION_PREFIX + mpRequest.getSessionId(), messages);
+        // 保存到数据库
+        recordsService.saveChatMessages(messages, mpRequest, openId);
     }
 
     private List<AIChatMessage> loadChatMessages(String sessionId) {

@@ -57,7 +57,7 @@ public class MpController {
     }
 
     @PostMapping("/chat")
-    @RateLimiter(key = "mp-chat", time = 1, count = 3, limitType = LimitType.ID)
+    @RateLimiter(key = "mp-chat", time = 3, count = 1, limitType = LimitType.ID)
     public MpAnswer chat(@RequestBody MpRequest mpRequest, @RequestHeader("mp-token") String sessionKey) {
         return aiService.chat(mpRequest, sessionKey);
     }

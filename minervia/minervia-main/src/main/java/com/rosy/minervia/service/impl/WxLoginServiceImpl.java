@@ -75,6 +75,13 @@ public class WxLoginServiceImpl extends ServiceImpl<WxLoginMapper, WxLogin> impl
         return wxLogin;
     }
 
+    @Override
+    public String getOpenIdBySessionKey(String sessionKey) {
+        LambdaQueryWrapper<WxLogin> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(WxLogin::getSessionKey, sessionKey);
+        return getOne(queryWrapper).getOpenid();
+    }
+
     private void save2Redis(WxLogin wxLogin) {
         redisCache.setCacheObject(CacheConstants.WX_LOGIN_TOKEN_KEY + wxLogin.getSessionKey(), wxLogin, 60, TimeUnit.MINUTES);
     }
