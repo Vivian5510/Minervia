@@ -113,7 +113,7 @@ public class IAIServiceImpl implements IAIService {
 
     private void saveMessages(List<AIChatMessage> messages, MpRequest mpRequest, String openId) {
         // 保存到缓存
-        redisCache.setCacheList(AIConstants.AI_SESSION_PREFIX + mpRequest.getSessionId(), messages);
+        redisCache.setCacheList(AIConstants.AI_SESSION_PREFIX + mpRequest.getSessionId(), messages, 1, TimeUnit.HOURS);
         // 保存到数据库
         recordsService.saveChatMessages(messages, mpRequest, openId);
     }

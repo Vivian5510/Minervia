@@ -129,6 +129,24 @@ public class RedisCache {
     }
 
     /**
+     * 缓存List数据并设置过期时间
+     *
+     * @param key      缓存的键值
+     * @param dataList 待缓存的List数据
+     * @param timeout  超时时间
+     * @param unit     时间单位
+     * @return 缓存的对象
+     */
+    public <T> long setCacheList(final String key, final List<T> dataList, final long timeout, final TimeUnit unit) {
+        Long count = redisTemplate.opsForList().rightPushAll(key, dataList);
+        if (count != null && count > 0) {
+            // 设置缓存的过期时间
+            expire(key, timeout, unit);
+        }
+        return count == null ? 0 : count;
+    }
+
+    /**
      * 获得缓存的list对象
      *
      * @param key 缓存的键值
