@@ -23,6 +23,14 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.outer-container.data-v-7c2ebfa5 {
+  height: 700rpx;
+  border: 2px solid #d4d6da;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 0px 30px;
+  background-color: #ffffff;
+}
 .top.data-v-7c2ebfa5 {
   height: 250rpx;
   position: relative;
@@ -43,8 +51,7 @@
   font-size: 20rpx;
 }
 .user-card.data-v-7c2ebfa5 {
-  height: 170rpx;
-  padding: 0px 15px;
+  height: 250rpx;
 }
 .user-card .card.data-v-7c2ebfa5 {
   position: relative;
@@ -92,9 +99,6 @@
   width: 20%;
   height: 50%;
 }
-.list-card.data-v-7c2ebfa5 {
-  padding: 0 15px;
-}
 .list-card .card.data-v-7c2ebfa5 {
   border-radius: 5px;
   position: relative;
@@ -129,7 +133,7 @@
 }
 .quit.data-v-7c2ebfa5 {
   height: 100rpx;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 .quit .btn.data-v-7c2ebfa5 {
   background-color: #4f99ff;

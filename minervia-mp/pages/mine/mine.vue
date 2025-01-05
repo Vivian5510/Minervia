@@ -1,57 +1,59 @@
 <template>
 	<view class="page">
 		<view class="top">
-			<view class="background tn-gradient-bg__purplered-single"></view>
+			<view class="background tn-gradient-bg__cool-13"></view>
 		</view>
-		<view class="user-card">
-			<view class="card">
-				<view class="top">
-					<view class="userImage">
-						<image
-							src="http://sogoqjp87.hn-bkt.clouddn.com/2024/12/14/4571330bce0d4e72a879d4fa7c9775a0.jpg">
-						</image>
-					</view>
-				</view>
-				<view class="bottom">
-					<view class="left">
-						<view class="user-phone">
-							<div class="tn-mb tn-text-transparent transparent tn-gradient-bg__purple-single">
-								Welcome to</div>
+		<view class="outer-container">
+			<view class="user-card">
+				<view class="card">
+					<view class="top">
+						<view class="userImage">
+							<image
+								src="http://sogoqjp87.hn-bkt.clouddn.com/2024/12/14/4571330bce0d4e72a879d4fa7c9775a0.jpg">
+							</image>
 						</view>
-						<view class="user-text">
-							<div
-								class="tn-mb tn-text-transparent transparent tn-text-bold tn-gradient-bg__purple-single">
-								Minervia!
-							</div>
+					</view>
+					<view class="bottom">
+						<view class="left">
+							<view class="user-phone">
+								<div class="tn-mb tn-text-transparent transparent tn-text-4xl tn-gradient-bg__cool-14">
+									Welcome to</div>
+							</view>
+							<view class="user-text">
+								<div
+									class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-4xl tn-gradient-bg__cool-14">
+									Minervia!
+								</div>
+							</view>
 						</view>
 					</view>
 				</view>
 			</view>
-		</view>
-		<view class="list-card">
-			<view class="card">
-				<view class="item item-bottom-solid" hover-class="click-view" @click="itemClick('records')">
-					<view class="left flex-center">
-						<image src="@/static/icon/iconly-icon-export-1735205510.png" mode="aspectFit"></image>
-					</view>
-					<view class="center tn-text-transparent tn-gradient-bg__bluepurple-single tn-text-bold">
-						<text> 面试记录</text>
-					</view>
-					<view class="right flex-center">
-						<u-icon class="icon" name="arrow-right"></u-icon>
+			<view class="list-card">
+				<view class="card">
+					<view class="item item-bottom-solid" hover-class="click-view" @click="itemClick('records')">
+						<view class="left flex-center">
+							<image src="@/static/icon/iconly-icon-export-1735205510.png" mode="aspectFit"></image>
+						</view>
+						<view class="center tn-text-transparent tn-gradient-bg__bluepurple-single tn-text-bold">
+							<text> 面试记录</text>
+						</view>
+						<view class="right flex-center">
+							<u-icon class="icon" name="arrow-right"></u-icon>
+						</view>
 					</view>
 				</view>
-			</view>
-			<view class="card">
-				<view class="item item-bottom-solid" hover-class="click-view" @click="itemClick('about')">
-					<view class="left flex-center">
-						<image src="@/static/icon/iconly-icon-export-1735205493.png" mode="aspectFit"></image>
-					</view>
-					<view class="center tn-text-transparent tn-gradient-bg__bluepurple-single tn-text-bold">
-						<text> 关于</text>
-					</view>
-					<view class="right flex-center">
-						<u-icon class="icon" name="arrow-right"></u-icon>
+				<view class="card">
+					<view class="item item-bottom-solid" hover-class="click-view" @click="itemClick('about')">
+						<view class="left flex-center">
+							<image src="@/static/icon/iconly-icon-export-1735205493.png" mode="aspectFit"></image>
+						</view>
+						<view class="center tn-text-transparent tn-gradient-bg__bluepurple-single tn-text-bold">
+							<text> 关于</text>
+						</view>
+						<view class="right flex-center">
+							<u-icon class="icon" name="arrow-right"></u-icon>
+						</view>
 					</view>
 				</view>
 			</view>
@@ -64,19 +66,30 @@
 	</view>
 
 	<TnPopup v-model="showPopup" open-direction="bottom" height="400rpx" radius="15px">
-		<view class="tn-p-lg tn-gradient-bg__grey-light">
-			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-4xl tn-gradient-bg__cool-8">Halo,
-				This Minervia!</div>
-			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-2xl tn-gradient-bg__teal">Developer:
+		<view class="tn-p-lg tn-gradient-bg__grey">
+			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-3xl tn-gradient-bg__cool-8">Halo,
+				This's Minervia!</div>
+			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-2xl tn-gradient-bg__cool-8">
+				Developer:
 				Rosy</div>
-			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-2xl tn-gradient-bg__yellow">
+			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-2xl tn-gradient-bg__cool-8">
 				Contact: github.com/Vivian5510</div>
-			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-2xl tn-gradient-bg__orange">Version:
+			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-2xl tn-gradient-bg__cool-8">Version:
 				0.0.1</div>
 		</view>
 	</TnPopup>
 </template>
+
 <style lang="scss" scoped>
+	.outer-container {
+		height: 700rpx;
+		border: 2px solid #d4d6da;
+		border-radius: 15px;
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+		padding: 0px 30px;
+		background-color: #ffffff;
+	}
+
 	.top {
 		height: 250rpx;
 		position: relative;
@@ -101,9 +114,7 @@
 	}
 
 	.user-card {
-
-		height: 170rpx;
-		padding: 0px 15px;
+		height: 250rpx;
 
 		.card {
 			position: relative;
@@ -161,7 +172,6 @@
 	}
 
 	.list-card {
-		padding: 0 15px;
 
 		.card {
 			border-radius: 5px;
@@ -205,7 +215,7 @@
 
 	.quit {
 		height: 100rpx;
-		margin-top: 100px;
+		margin-top: 50px;
 
 		.btn {
 			background-color: #4f99ff;
