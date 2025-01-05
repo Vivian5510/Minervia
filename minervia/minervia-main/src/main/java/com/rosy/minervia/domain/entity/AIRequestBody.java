@@ -1,5 +1,7 @@
 package com.rosy.minervia.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AIRequestBody {
 
     /**
@@ -44,6 +47,7 @@ public class AIRequestBody {
      * 通过对已生成的token增加惩罚，减少重复生成的现象
      * 默认值1.0，取值范围[1.0, 2.0]
      */
+    @JsonProperty("penalty_score")
     private Float penaltyScore;
 
     /**
@@ -62,24 +66,28 @@ public class AIRequestBody {
      * 指定模型最大输出token数
      * 可选项，范围[2, 4096]，默认为4096
      */
+    @JsonProperty("max_output_tokens")
     private Integer maxOutputTokens;
 
     /**
      * 正值根据迄今为止文本中的现有频率对新token进行惩罚，降低重复生成的可能性
      * 默认值0.1，取值范围[-2.0, 2.0]
      */
+    @JsonProperty("frequency_penalty")
     private Float frequencyPenalty;
 
     /**
      * 正值根据token在文本中是否已经出现来对其进行惩罚，从而增加模型谈论新主题的可能性
      * 默认值0.0，取值范围[-2.0, 2.0]
      */
+    @JsonProperty("presence_penalty")
     private Float presencePenalty;
 
     /**
      * 表示最终用户的唯一标识符
      * 用于识别不同用户的请求
      */
+    @JsonProperty("user_id")
     private String userId;
 }
 

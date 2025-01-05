@@ -13,6 +13,7 @@ import com.rosy.minervia.service.IRecordsService;
 import com.rosy.minervia.service.IWxLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -77,6 +78,7 @@ public class IAIServiceImpl implements IAIService {
         AIResponseBody aiResponseBody = webClient
                 .post()
                 .uri(uri)
+                .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(AIRequestBody.builder()
                         .messages(messages)
                         .system(model.getRole())
@@ -85,11 +87,18 @@ public class IAIServiceImpl implements IAIService {
                 .retrieve()
                 .bodyToMono(AIResponseBody.class)
                 .block();
+
+        Optional.ofNullable(aiResponseBody)
+                .orElseThrow(() -> new RuntimeException("AI服务供应端出错"));
+        Optional.ofNullable(aiResponseBody.getErrorMsg())
+                .ifPresent(errorMsg -> {
+                            throw new RuntimeException(errorMsg);
+                        }
+                );
+
         AIChatMessage answer = AIChatMessage.builder()
                 .role(AIConstants.AI_ROLE_ASSISTANT)
-                .content(Optional.ofNullable(aiResponseBody)
-                        .map(AIResponseBody::getResult)
-                        .orElse(""))
+                .content(aiResponseBody.getResult())
                 .build();
         messages.add(answer);
 
@@ -158,7 +167,7 @@ public class IAIServiceImpl implements IAIService {
                     URI uri = UriComponentsBuilder.fromUriString(baiduAIProperties.getAccessTokenUrl())
                             .queryParam("client_id", baiduAIProperties.getClientId())
                             .queryParam("client_secret", baiduAIProperties.getClientSecret())
-                            .queryParam("grant_type", baiduAIProperties.getGrantType())  // 使用正确的 grant_type
+                            .queryParam("grant_type", baiduAIProperties.getGrantType())
                             .build()
                             .toUri();
 

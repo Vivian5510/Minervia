@@ -80,4 +80,16 @@ public class AIResponseBody {
      */
     @JsonProperty("usage")
     private Usage usage;
+
+    /**
+     * 错误码
+     */
+    @JsonProperty("error_code")
+    private String errorCode;
+
+    /**
+     * 错误信息
+     */
+    @JsonProperty("error_msg")
+    private String errorMsg;
 }

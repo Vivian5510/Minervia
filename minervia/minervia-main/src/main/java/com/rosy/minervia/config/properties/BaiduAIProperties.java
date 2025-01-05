@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "baidu.ai")
+@ConfigurationProperties(prefix = "baidu-ai")
 @Data
 @Builder
 @NoArgsConstructor
