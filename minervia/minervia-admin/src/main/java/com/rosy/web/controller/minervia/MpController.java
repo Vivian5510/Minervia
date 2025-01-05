@@ -5,14 +5,10 @@ import com.rosy.common.annotation.RateLimiter;
 import com.rosy.common.core.domain.AjaxResult;
 import com.rosy.common.enums.LimitType;
 import com.rosy.minervia.domain.dto.MpRequest;
+import com.rosy.minervia.domain.entity.CategoryItem;
 import com.rosy.minervia.domain.entity.WxLogin;
-import com.rosy.minervia.domain.vo.BannerVO;
-import com.rosy.minervia.domain.vo.CategoryVO;
-import com.rosy.minervia.domain.vo.MpAnswer;
-import com.rosy.minervia.service.IAIService;
-import com.rosy.minervia.service.IBannerService;
-import com.rosy.minervia.service.ICategoryService;
-import com.rosy.minervia.service.IWxLoginService;
+import com.rosy.minervia.domain.vo.*;
+import com.rosy.minervia.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +31,10 @@ public class MpController {
     IBannerService bannerService;
     @Autowired
     IAIService aiService;
+    @Autowired
+    IModelsService modelsService;
+    @Autowired
+    ICategoryItemService categoryItemService;
 
     @PostMapping("/login")
     public AjaxResult login(@RequestParam("js_code") String jsCode) {
@@ -60,5 +60,15 @@ public class MpController {
     @RateLimiter(key = "mp-chat", time = 3, count = 1, limitType = LimitType.ID)
     public MpAnswer chat(@RequestBody MpRequest mpRequest, @RequestHeader("mp-token") String sessionKey) {
         return aiService.chat(mpRequest, sessionKey);
+    }
+
+    @GetMapping("/models")
+    public List<ModelVO> getAllModels() {
+        return BeanUtil.copyToList(modelsService.getAllModels(), ModelVO.class);
+    }
+
+    @GetMapping("/categoryItems/{categoryName}")
+    public List<CategoryItemVO> getCategoryItems(@PathVariable("categoryName") String categoryName) {
+        return BeanUtil.copyToList(categoryItemService.getCategoryItems(categoryName), CategoryItemVO.class);
     }
 }

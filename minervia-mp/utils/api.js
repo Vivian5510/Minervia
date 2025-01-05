@@ -70,3 +70,17 @@ export const getAllCategories = () => {
 		method: 'GET'
 	})
 }
+
+export const getAllModels = () => {
+	return request({
+		url: '/models',
+		method: 'GET'
+	})
+}
+
+export const getAllCategoryItems = (categoryName) => {
+	return request({
+		url: '/categoryItems/' + categoryName,
+		method: 'GET'
+	})
+}

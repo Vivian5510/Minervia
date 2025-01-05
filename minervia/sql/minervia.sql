@@ -100,6 +100,23 @@ CREATE TABLE `minervia_category_item`
   COLLATE = utf8mb4_unicode_ci
   ROW_FORMAT = DYNAMIC;
 
+INSERT INTO `minervia_category_item` (`text`, `value`, `category`, `order_num`, `del_flag`)
+VALUES ('Java 基础', 'java_basics', 'Java', 1, 0),
+       ('Spring 框架', 'spring_framework', 'Java', 2, 0),
+       ('Spring Boot', 'spring_boot', 'Java', 3, 0),
+       ('Hibernate', 'hibernate', 'Java', 4, 0),
+       ('Java 多线程', 'java_multithreading', 'Java', 5, 0),
+       ('Java 集合框架', 'java_collections', 'Java', 6, 0),
+       ('JVM 内存模型', 'jvm_memory_model', 'Java', 7, 0),
+       ('Java 异常处理', 'java_exceptions', 'Java', 8, 0),
+       ('Java 8 新特性', 'java_8_features', 'Java', 9, 0),
+       ('Java 网络编程', 'java_networking', 'Java', 10, 0),
+       ('Java IO', 'java_io', 'Java', 11, 0),
+       ('Java 设计模式', 'java_design_patterns', 'Java', 12, 0),
+       ('Java 微服务', 'java_microservices', 'Java', 13, 0),
+       ('Java 性能优化', 'java_performance', 'Java', 14, 0);
+
+
 
 -- ------------------------------------------------
 -- Table structure for table `minervia_records`
