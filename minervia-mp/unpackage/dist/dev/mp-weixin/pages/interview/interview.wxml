@@ -1,1 +1,1 @@
-<view></view>
+<tn-picker wx:if="{{c}}" u-i="5d487c06-0" bind:__l="__l" bindupdateModelValue="{{a}}" bindupdateOpen="{{b}}" u-p="{{c}}"/><tn-picker wx:if="{{f}}" u-i="5d487c06-1" bind:__l="__l" bindupdateModelValue="{{d}}" bindupdateOpen="{{e}}" u-p="{{f}}"/><view></view><view></view>

@@ -61,7 +61,7 @@
 		let category = categories.value[event.detail.index]
 		if (category.enable) {
 			uni.navigateTo({
-				url: '/pages/interview/interview?categoryName' + category.name
+				url: '/pages/interview/interview?categoryName=' + category.name
 			})
 		} else {
 			uni.showToast({

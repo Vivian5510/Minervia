@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "Minervia-AI面试官",
-  "usingComponents": {}
+  "usingComponents": {
+    "tn-picker": "../../uni_modules/tuniaoui-vue3/components/picker/src/picker"
+  }
 }

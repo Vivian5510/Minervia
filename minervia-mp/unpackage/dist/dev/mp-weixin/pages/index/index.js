@@ -35,7 +35,7 @@ const _sfc_main = {
       let category = categories.value[event.detail.index];
       if (category.enable) {
         common_vendor.index.navigateTo({
-          url: "/pages/interview/interview?category" + category.name
+          url: "/pages/interview/interview?categoryName=" + category.name
         });
       } else {
         common_vendor.index.showToast({

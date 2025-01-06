@@ -66,5 +66,19 @@ const getAllCategories = () => {
     method: "GET"
   });
 };
+const getAllModels = () => {
+  return request({
+    url: "/models",
+    method: "GET"
+  });
+};
+const getAllCategoryItems = (categoryName) => {
+  return request({
+    url: "/categoryItems/" + categoryName,
+    method: "GET"
+  });
+};
 exports.getAllBanners = getAllBanners;
 exports.getAllCategories = getAllCategories;
+exports.getAllCategoryItems = getAllCategoryItems;
+exports.getAllModels = getAllModels;

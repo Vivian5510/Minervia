@@ -23,17 +23,14 @@ const _sfc_main = {
     return (_ctx, _cache) => {
       return {
         a: common_assets._imports_0,
-        b: common_vendor.p({
+        b: common_vendor.o(($event) => itemClick("records")),
+        c: common_assets._imports_1,
+        d: common_vendor.p({
           name: "arrow-right"
         }),
-        c: common_vendor.o(($event) => itemClick("records")),
-        d: common_assets._imports_1,
-        e: common_vendor.p({
-          name: "arrow-right"
-        }),
-        f: common_vendor.o(($event) => itemClick("about")),
-        g: common_vendor.o(($event) => common_vendor.isRef(showPopup) ? showPopup.value = $event : showPopup = $event),
-        h: common_vendor.p({
+        e: common_vendor.o(($event) => itemClick("about")),
+        f: common_vendor.o(($event) => common_vendor.isRef(showPopup) ? showPopup.value = $event : showPopup = $event),
+        g: common_vendor.p({
           ["open-direction"]: "bottom",
           height: "400rpx",
           radius: "15px",

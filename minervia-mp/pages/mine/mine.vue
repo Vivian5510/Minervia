@@ -16,7 +16,8 @@
 					<view class="bottom">
 						<view class="left">
 							<view class="user-phone">
-								<div class="tn-mb tn-text-transparent transparent tn-text-4xl tn-gradient-bg__cool-14">
+								<div
+									class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-4xl tn-gradient-bg__cool-14">
 									Welcome to</div>
 							</view>
 							<view class="user-text">
@@ -33,23 +34,22 @@
 				<view class="card">
 					<view class="item item-bottom-solid" hover-class="click-view" @click="itemClick('records')">
 						<view class="left flex-center">
-							<image src="@/static/icon/iconly-icon-export-1735205510.png" mode="aspectFit"></image>
+							<image src="@/static/icon/Calendar.svg" mode="aspectFit"></image>
 						</view>
-						<view class="center tn-text-transparent tn-gradient-bg__bluepurple-single tn-text-bold">
-							<text> 面试记录</text>
-						</view>
-						<view class="right flex-center">
-							<u-icon class="icon" name="arrow-right"></u-icon>
+						<view
+							class="center tn-text-transparent tn-gradient-bg__bluepurple-single tn-text-bold tn-text-4xl">
+							面试记录
 						</view>
 					</view>
 				</view>
 				<view class="card">
 					<view class="item item-bottom-solid" hover-class="click-view" @click="itemClick('about')">
 						<view class="left flex-center">
-							<image src="@/static/icon/iconly-icon-export-1735205493.png" mode="aspectFit"></image>
+							<image src="@/static/icon/Rocket.svg" mode="aspectFit"></image>
 						</view>
-						<view class="center tn-text-transparent tn-gradient-bg__bluepurple-single tn-text-bold">
-							<text> 关于</text>
+						<view
+							class="center tn-text-transparent tn-gradient-bg__bluepurple-single tn-text-bold tn-text-4xl">
+							关于
 						</view>
 						<view class="right flex-center">
 							<u-icon class="icon" name="arrow-right"></u-icon>

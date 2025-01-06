@@ -26,4 +26,9 @@ public class CategoryVO {
      * 宫格技术名称
      */
     private String name;
+
+    /**
+     * 是否启用
+     */
+    private Boolean enable;
 }
