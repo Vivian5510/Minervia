@@ -23,6 +23,16 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+@font-face {
+  font-family: "GoMonoNerdFont";
+  /* 字体名称 */
+  src: url("http://spm6tumtq.hn-bkt.clouddn.com/regular/font/GoMonoNerdFont-BoldItalic.ttf?e=1736137294&token=8Xps1jRWyIv6dKbl4Nztc_xsRpgulRtlVnmaJYIe:WWd8USNcqUOqjNh8VcGwBN0_Rbs=") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+.custom-font.data-v-7c2ebfa5 {
+  font-family: "GoMonoNerdFont", sans-serif;
+}
 .outer-container.data-v-7c2ebfa5 {
   height: 700rpx;
   border: 2px solid #d4d6da;
@@ -118,11 +128,10 @@
   height: 70rpx;
 }
 .list-card .card .item .center.data-v-7c2ebfa5 {
-  width: 65%;
+  width: 80%;
   display: flex;
   justify-content: start;
   align-items: center;
-  font-size: 1.1em;
 }
 .list-card .card .item .right.data-v-7c2ebfa5 {
   width: 20%;
@@ -136,10 +145,8 @@
   margin-top: 50px;
 }
 .quit .btn.data-v-7c2ebfa5 {
-  background-color: #4f99ff;
   border-radius: 30px;
   width: 80%;
-  color: white;
   font-size: 1.2em;
   height: 100%;
 }

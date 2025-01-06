@@ -1,5 +1,5 @@
 <template>
-	<view class="page">
+	<view class="page custom-font">
 		<view class="top">
 			<view class="background tn-gradient-bg__cool-13"></view>
 		</view>
@@ -37,8 +37,8 @@
 							<image src="@/static/icon/Calendar.svg" mode="aspectFit"></image>
 						</view>
 						<view
-							class="center tn-text-transparent tn-gradient-bg__bluepurple-single tn-text-bold tn-text-4xl">
-							面试记录
+							class="center tn-text-transparent tn-gradient-bg__bluepurple-single tn-text-bold tn-text-2xl">
+							Interview History
 						</view>
 					</view>
 				</view>
@@ -49,10 +49,7 @@
 						</view>
 						<view
 							class="center tn-text-transparent tn-gradient-bg__bluepurple-single tn-text-bold tn-text-4xl">
-							关于
-						</view>
-						<view class="right flex-center">
-							<u-icon class="icon" name="arrow-right"></u-icon>
+							About
 						</view>
 					</view>
 				</view>
@@ -60,7 +57,10 @@
 		</view>
 		<view class="quit flex-center">
 			<view class="btn flex-center tn-gradient-bg__purplered">
-				退出登录
+				<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-4xl tn-gradient-bg__blue-light"
+					style="margin-top: 15rpx">
+					Q u i t
+				</div>
 			</view>
 		</view>
 	</view>
@@ -81,6 +81,18 @@
 </template>
 
 <style lang="scss" scoped>
+	@font-face {
+		font-family: 'GoMonoNerdFont';
+		/* 字体名称 */
+		src: url('http://spm6tumtq.hn-bkt.clouddn.com/regular/font/GoMonoNerdFont-BoldItalic.ttf?e=1736137294&token=8Xps1jRWyIv6dKbl4Nztc_xsRpgulRtlVnmaJYIe:WWd8USNcqUOqjNh8VcGwBN0_Rbs=') format('truetype');
+		font-weight: bold;
+		font-style: italic;
+	}
+
+	.custom-font {
+		font-family: 'GoMonoNerdFont', sans-serif;
+	}
+
 	.outer-container {
 		height: 700rpx;
 		border: 2px solid #d4d6da;
@@ -194,11 +206,10 @@
 				}
 
 				.center {
-					width: 65%;
+					width: 80%;
 					display: flex;
 					justify-content: start;
 					align-items: center;
-					font-size: 1.1em;
 				}
 
 				.right {
@@ -218,10 +229,8 @@
 		margin-top: 50px;
 
 		.btn {
-			background-color: #4f99ff;
 			border-radius: 30px;
 			width: 80%;
-			color: white;
 			font-size: 1.2em;
 			height: 100%;
 		}

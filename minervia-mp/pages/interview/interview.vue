@@ -4,7 +4,6 @@
 	<TnPicker v-model="categoryItemsPickerValue" v-model:open="openCategoryItemsPicker"
 		:data="categoryItemsPickerData" />
 
-
 	<view>
 
 	</view>
