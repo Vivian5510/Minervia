@@ -1,1 +1,1 @@
-<view></view><view></view>
+<view class="header"><uni-card u-s="{{['d']}}" class="picker tn-shadow-lg" u-i="5d487c06-0" bind:__l="__l"><picker range="{{b}}" range-key="name" bindchange="{{c}}"><view>{{a}}</view></picker></uni-card><uni-card u-s="{{['d']}}" class="picker tn-shadow-lg" u-i="5d487c06-1" bind:__l="__l"><picker range="{{e}}" range-key="text" bindchange="{{f}}"><view>{{d}}</view></picker></uni-card></view><view></view><view></view>

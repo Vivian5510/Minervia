@@ -1,12 +1,34 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const utils_api = require("../../utils/api.js");
+if (!Array) {
+  const _easycom_uni_card2 = common_vendor.resolveComponent("uni-card");
+  _easycom_uni_card2();
+}
+const _easycom_uni_card = () => "../../uni_modules/uni-card/components/uni-card/uni-card.js";
+if (!Math) {
+  _easycom_uni_card();
+}
 const _sfc_main = {
   __name: "interview",
   setup(__props) {
     let categoryName;
     let models = common_vendor.ref([]);
     let categoryItems = common_vendor.ref([]);
+    let model = common_vendor.reactive({
+      name: "请选择AI模型",
+      charge: void 0
+    });
+    let categoryItem = common_vendor.reactive({
+      text: "请选择试题分类",
+      name: void 0
+    });
+    function modelSelect(event) {
+      Object.assign(model, models.value[event.detail.value]);
+    }
+    function categoryItemSelect(event) {
+      Object.assign(categoryItem, categoryItems.value[event.detail.value]);
+    }
     common_vendor.onLoad((options) => {
       categoryName = options.categoryName;
       common_vendor.index.getStorage({
@@ -47,7 +69,14 @@ const _sfc_main = {
       });
     });
     return (_ctx, _cache) => {
-      return {};
+      return {
+        a: common_vendor.t(common_vendor.unref(model).name),
+        b: common_vendor.unref(models),
+        c: common_vendor.o(modelSelect),
+        d: common_vendor.t(common_vendor.unref(categoryItem).text),
+        e: common_vendor.unref(categoryItems),
+        f: common_vendor.o(categoryItemSelect)
+      };
     };
   }
 };

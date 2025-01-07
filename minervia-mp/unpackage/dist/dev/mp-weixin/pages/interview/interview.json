@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "Minervia-AI面试官",
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-card": "../../uni_modules/uni-card/components/uni-card/uni-card"
+  }
 }
