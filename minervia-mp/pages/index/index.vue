@@ -1,8 +1,8 @@
 <template>
 	<view class="content">
 		<div class="tn-gradient-bg__blue-light fullscreen-background"></div>
-		<TnSwiper v-model="currentSwiperIndex" :data="banners" width="100%" height="420" class="swiper-container"
-			autoplay loop indicator indicator-type="dot">
+		<TnSwiper v-model="currentSwiperIndex" :data="banners" width="100%" height="420"
+			class="swiper-container tn-shadow-sm" autoplay loop indicator indicator-type="dot">
 			<template #default="{ data, active }">
 				<view class="swiper-data swiper-data.animation" :class="[{ active }]">
 					<image class="swiper-image" :src="data.image" mode="aspectFill" @click="bannerClick(data.url)" />
@@ -11,7 +11,7 @@
 		</TnSwiper>
 		<uni-grid :column="3" :showBorder="false" :square="false" @change="gridItemClick">
 			<uni-grid-item v-for="(category, index) in categories" :index="index" :key="index">
-				<view class="grid-container">
+				<view class="grid-container tn-shadow">
 					<image class="grid-image" :src="category.src" mode="aspectFill"></image>
 					<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-gradient-bg__cool-6">
 						{{category.text}}
@@ -34,6 +34,11 @@
 	import {
 		onLoad
 	} from '@dcloudio/uni-app'
+
+	let openPicker = ref(false)
+	let pickerValue = ref('数值2')
+
+	let pickerData = ['数值1', '数值2', '数值3', '数值4', '数值5']
 
 	let currentSwiperIndex = ref(0)
 

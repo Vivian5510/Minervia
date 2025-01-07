@@ -15,6 +15,8 @@ const TnSwiper = () => "../../uni_modules/tuniaoui-vue3/components/swiper/src/sw
 const _sfc_main = {
   __name: "index",
   setup(__props) {
+    common_vendor.ref(false);
+    common_vendor.ref("数值2");
     let currentSwiperIndex = common_vendor.ref(0);
     let banners = common_vendor.ref([]);
     let categories = common_vendor.ref([]);

@@ -1,9 +1,9 @@
 <template>
 	<view class="page custom-font">
 		<view class="top">
-			<view class="background tn-gradient-bg__cool-13"></view>
+			<view class="background tn-gradient-bg__cool-13 tn-shadow-blur"></view>
 		</view>
-		<view class="outer-container">
+		<view class="outer-container tn-shadow-lg">
 			<view class="user-card">
 				<view class="card">
 					<view class="top">
@@ -56,7 +56,7 @@
 			</view>
 		</view>
 		<view class="quit flex-center">
-			<view class="btn flex-center tn-gradient-bg__purplered">
+			<view class="btn flex-center tn-gradient-bg__purplered tn-shadow-blur">
 				<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-4xl tn-gradient-bg__blue-light"
 					style="margin-top: 15rpx">
 					Q u i t
@@ -66,16 +66,16 @@
 	</view>
 
 	<TnPopup v-model="showPopup" open-direction="bottom" height="400rpx" radius="15px">
-		<view class="tn-p-lg tn-gradient-bg__grey">
+		<view class="tn-p-lg tn-grey-dark_bg custom-font">
 			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-3xl tn-gradient-bg__cool-8">Halo,
 				This's Minervia!</div>
+			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-2xl tn-gradient-bg__cool-8">Version:
+				0.0.1</div>
 			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-2xl tn-gradient-bg__cool-8">
 				Developer:
 				Rosy</div>
-			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-2xl tn-gradient-bg__cool-8">
+			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-1xl tn-gradient-bg__cool-8">
 				Contact: github.com/Vivian5510</div>
-			<div class="tn-mb tn-text-transparent transparent tn-text-bold tn-text-2xl tn-gradient-bg__cool-8">Version:
-				0.0.1</div>
 		</view>
 	</TnPopup>
 </template>
@@ -84,7 +84,7 @@
 	@font-face {
 		font-family: 'GoMonoNerdFont';
 		/* 字体名称 */
-		src: url('http://spm6tumtq.hn-bkt.clouddn.com/regular/font/GoMonoNerdFont-BoldItalic.ttf?e=1736137294&token=8Xps1jRWyIv6dKbl4Nztc_xsRpgulRtlVnmaJYIe:WWd8USNcqUOqjNh8VcGwBN0_Rbs=') format('truetype');
+		src: url('http://spm6tumtq.hn-bkt.clouddn.com/regular/font/GoMonoNerdFont-BoldItalic.ttf?e=1736310077&token=8Xps1jRWyIv6dKbl4Nztc_xsRpgulRtlVnmaJYIe:7zq41ls5iEmRewU4B9eb6wkrAwY=') format('truetype');
 		font-weight: bold;
 		font-style: italic;
 	}
@@ -95,10 +95,9 @@
 
 	.outer-container {
 		height: 700rpx;
-		border: 2px solid #d4d6da;
 		border-radius: 15px;
-		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-		padding: 0px 30px;
+		margin-left: 30px;
+		margin-right: 30px;
 		background-color: #ffffff;
 	}
 
