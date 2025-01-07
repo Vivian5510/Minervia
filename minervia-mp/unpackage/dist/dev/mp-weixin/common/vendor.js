@@ -7864,6 +7864,537 @@ const createHook = (lifecycle) => (hook, target = getCurrentInstance()) => {
   !isInSSRComponentSetup && injectHook(lifecycle, hook, target);
 };
 const onLoad = /* @__PURE__ */ createHook(ON_LOAD);
+function fromPairs(pairs) {
+  const result = {};
+  if (pairs == null) {
+    return result;
+  }
+  for (const pair of pairs) {
+    result[pair[0]] = pair[1];
+  }
+  return result;
+}
+const symbolProto = Symbol ? Symbol.prototype : void 0;
+symbolProto ? symbolProto.toString : void 0;
+const isEmpty = (val) => !val && val !== 0 || isArray(val) && val.length === 0 || isObject(val) && !Object.keys(val).length;
+const tnPropKey = "__tnPropKey";
+const definePropType = (val) => val;
+const isTnProp = (val) => isObject(val) && !!val[tnPropKey];
+const buildProp = (prop, key) => {
+  if (!isObject(prop) || isTnProp(prop))
+    return prop;
+  const { values, required, default: defaultValue, type, validator } = prop;
+  const _validator = values || validator ? (val) => {
+    let valid = false;
+    let allowedValues = [];
+    if (values) {
+      allowedValues = Array.from(values);
+      if (hasOwn(prop, "default")) {
+        allowedValues.push(defaultValue);
+      }
+      valid || (valid = allowedValues.includes(val));
+    }
+    if (validator)
+      valid || (valid = validator(val));
+    if (!valid && allowedValues.length > 0) {
+      const allowValuesText = [...new Set(allowedValues)].map((value) => JSON.stringify(value)).join(", ");
+      warn(
+        `Invalid prop: validation failed${key ? ` for prop "${key}"` : ""}. Expected one of [${allowValuesText}], got value ${JSON.stringify(
+          val
+        )}.`
+      );
+    }
+    return valid;
+  } : void 0;
+  const tnProp = {
+    type,
+    required: !!required,
+    validator: _validator,
+    [tnPropKey]: true
+  };
+  if (hasOwn(prop, "default"))
+    tnProp.default = defaultValue;
+  return tnProp;
+};
+const buildProps = (props) => fromPairs(
+  Object.entries(props).map(([key, option]) => [
+    key,
+    buildProp(option, key)
+  ])
+);
+const iconPropType = definePropType([String]);
+const formatDomSizeValue = (value, unit = "rpx", empty = true) => {
+  if (!value)
+    return empty ? "" : `0${unit}`;
+  if (isString(value) && /(^calc)|(%|vw|vh|px|rpx|auto)$/.test(value))
+    return value;
+  return `${value}${unit}`;
+};
+const generateId = () => Math.floor(Math.random() * 1e4);
+const suspendButtonShape = ["circle", "square"];
+const suspendButtonProps = buildProps({
+  /**
+   * @description 按钮显示的图标
+   */
+  icon: String,
+  /**
+   * @description 按钮距离顶部的位置，单位rpx
+   */
+  top: {
+    type: [String, Number],
+    default: "80%"
+  },
+  /**
+   * @description 按钮距离右侧的位置，单位rpx
+   */
+  right: {
+    type: [String, Number],
+    default: "5%"
+  },
+  /**
+   * @description 按钮背景颜色, 以tn开头使用图鸟内置的颜色
+   */
+  bgColor: {
+    type: String,
+    default: "tn-type-primary"
+  },
+  /**
+   * @description 按钮文字颜色, 以tn开头使用图鸟内置的颜色
+   */
+  textColor: {
+    type: String,
+    default: "tn-color-white"
+  },
+  /**
+   * @description 按钮尺寸, 内置尺寸sm、lg、xl, 也可以传入指定尺寸的数值，默认单位为rpx
+   */
+  size: String,
+  /**
+   * @description 按钮形状
+   */
+  shape: {
+    type: String,
+    values: suspendButtonShape,
+    default: "circle"
+  },
+  /**
+   * @description 透明度
+   */
+  opacity: {
+    type: Number,
+    default: 0.9
+  },
+  /**
+   * @description 是否显示阴影
+   */
+  shadow: {
+    type: Boolean,
+    default: true
+  },
+  /**
+   * @description 是否有漂浮动画
+   */
+  float: {
+    type: Boolean,
+    default: true
+  },
+  /**
+   * @description 是否固定位置
+   */
+  fixed: {
+    type: Boolean,
+    default: true
+  }
+});
+const suspendButtonEmits = {
+  /**
+   * @description 点击按钮时触发
+   */
+  click: () => true
+};
+const defaultNamespace = "tn";
+const _bem = (namespace, block, blockSuffix, element, modifier) => {
+  let cls = `${namespace}-${block}`;
+  if (blockSuffix) {
+    cls += `-${blockSuffix}`;
+  }
+  if (element) {
+    cls += `__${element}`;
+  }
+  if (modifier) {
+    cls += `--${modifier}`;
+  }
+  return cls;
+};
+const namespaceContextKey = Symbol("localContextKey");
+const useGetDerivedNamespace = () => {
+  const derivedNamespace = inject(namespaceContextKey, ref(defaultNamespace));
+  const namespace = computed(() => {
+    return unref(derivedNamespace) || defaultNamespace;
+  });
+  return namespace;
+};
+const useNamespace = (block) => {
+  const namespace = useGetDerivedNamespace();
+  const b = (blockSuffix = "") => _bem(namespace.value, block, blockSuffix, "", "");
+  const e2 = (element) => element ? _bem(namespace.value, block, "", element, "") : "";
+  const m = (modifier) => modifier ? _bem(namespace.value, block, "", "", modifier) : "";
+  const be = (blockSuffix, element) => blockSuffix && element ? _bem(namespace.value, block, blockSuffix, element, "") : "";
+  const em = (element, modifier) => element && modifier ? _bem(namespace.value, block, "", element, modifier) : "";
+  const bm = (blockSuffix, modifier) => blockSuffix && modifier ? _bem(namespace.value, block, blockSuffix, "", modifier) : "";
+  const bem = (blockSuffix, element, modifier) => blockSuffix && element && modifier ? _bem(namespace.value, block, blockSuffix, element, modifier) : "";
+  const is = (name, ...args) => {
+    const state = args.length >= 1 ? args[0] : true;
+    return name && state ? `is-${name}` : "";
+  };
+  const cssVar = (object) => {
+    const styles = {};
+    for (const key in object) {
+      if (object[key]) {
+        styles[`--${namespace.value}-${key}`] = object[key];
+      }
+    }
+    return styles;
+  };
+  const cssVarBlock = (object) => {
+    const styles = {};
+    for (const key in object) {
+      if (object[key]) {
+        styles[`--${namespace.value}-${block}-${key}`] = object[key];
+      }
+    }
+    return styles;
+  };
+  const cssVarName = (name) => `--${namespace.value}-${name}`;
+  const cssVarBlockName = (name) => `--${namespace.value}-${block}-${name}`;
+  return {
+    namespace,
+    b,
+    e: e2,
+    m,
+    be,
+    em,
+    bm,
+    bem,
+    is,
+    // css
+    cssVar,
+    cssVarName,
+    cssVarBlock,
+    cssVarBlockName
+  };
+};
+const useComponentColor = (prop, type = "") => {
+  const classColor = ref("");
+  const styleColor = ref("");
+  const innerColorReg = /^(tn-|gradient)/;
+  const styleColorReg = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8}|[A-Fa-f0-9]{3})$|^rgb\(\d{1,3}(,\s?\d{1,3}){2}\)$|^rgba\(\d{1,3}(,\s?\d{1,3}){2},\s?0?\.?\d{1,}\)|transparent/i;
+  const handleColorValue = (value) => {
+    classColor.value = "";
+    styleColor.value = "";
+    if (value === void 0)
+      return;
+    if (innerColorReg.test(value)) {
+      if (type === "bg" && /.*gradient.*/.test(value)) {
+        const gradientValue = value.split("__")[1];
+        classColor.value = `tn-gradient-bg__${gradientValue}`;
+        return;
+      }
+      classColor.value = `${value}_${type}`;
+    }
+    if (styleColorReg.test(value)) {
+      styleColor.value = value;
+    }
+  };
+  handleColorValue(prop.value);
+  watch(
+    () => prop.value,
+    (val) => {
+      handleColorValue(val);
+    }
+  );
+  const updateColor = (value) => {
+    handleColorValue(value);
+  };
+  return [classColor, styleColor, updateColor];
+};
+const componentSizes = ["", "sm", "lg", "xl"];
+const formComponentSizes = ["", "sm", "lg"];
+const componentImgModes = [
+  "scaleToFill",
+  "aspectFit",
+  "aspectFill",
+  "widthFix",
+  "heightFix",
+  "top",
+  "bottom",
+  "center",
+  "left",
+  "right",
+  "top left",
+  "top right",
+  "bottom left",
+  "bottom right"
+];
+const componentTypes = [
+  "",
+  "primary",
+  "success",
+  "warning",
+  "danger",
+  "info"
+];
+const useComponentSize = (size2) => {
+  const sizeType = computed(() => {
+    if (!size2)
+      return "none";
+    return componentSizes.includes(size2) ? "inner" : "custom";
+  });
+  return {
+    sizeType
+  };
+};
+ref(0);
+const useSuspendButtonCustomStyle = (props) => {
+  const ns = useNamespace("suspend-button");
+  const [bgColorClass, bgColorStyle] = useComponentColor(
+    toRef(props, "bgColor"),
+    "bg"
+  );
+  const [textColorClass, textColorStyle] = useComponentColor(
+    toRef(props, "textColor"),
+    "text"
+  );
+  const { sizeType } = useComponentSize(props.size);
+  const buttonClass = computed(() => {
+    const cls = [ns.b()];
+    if (bgColorClass.value) {
+      cls.push(bgColorClass.value);
+    }
+    if (textColorClass.value) {
+      cls.push(textColorClass.value);
+    }
+    if (props.shape) {
+      cls.push(ns.m(props.shape));
+    }
+    if (props.size && sizeType.value === "inner") {
+      cls.push(ns.m(props.size));
+    }
+    if (props.float) {
+      cls.push(ns.m("float"));
+    }
+    if (props.fixed) {
+      cls.push(ns.m("fixed"));
+    }
+    if (props.shadow) {
+      cls.push("tn-shadow");
+    }
+    return cls.join(" ");
+  });
+  const buttonStyle = computed(() => {
+    const style = {};
+    if (!bgColorClass.value) {
+      style.backgroundColor = bgColorStyle.value || "var(--tn-color-primary)";
+    }
+    if (textColorStyle.value) {
+      style.color = textColorStyle.value;
+    } else if (!bgColorClass.value && !textColorClass.value) {
+      style.color = "var(--tn-color-white)";
+    }
+    if (props.size && sizeType.value === "custom") {
+      style.width = style.height = formatDomSizeValue(props.size);
+    }
+    if ((props == null ? void 0 : props.opacity) !== void 0) {
+      style.opacity = props.opacity;
+    }
+    if ((props == null ? void 0 : props.top) !== void 0) {
+      style.top = formatDomSizeValue(props.top);
+    }
+    if ((props == null ? void 0 : props.right) !== void 0) {
+      style.right = formatDomSizeValue(props.right);
+    }
+    return style;
+  });
+  const iconClass = computed(() => {
+    const cls = [ns.e("icon")];
+    return cls.join(" ");
+  });
+  const iconStyle = computed(() => {
+    const style = {};
+    if (props.size && sizeType.value === "custom") {
+      style.fontSize = `calc(${formatDomSizeValue(props.size)} * 0.7)`;
+    }
+    return style;
+  });
+  return {
+    buttonClass,
+    buttonStyle,
+    iconClass,
+    iconStyle
+  };
+};
+const useSuspendButton = (emits) => {
+  const clickHandle = () => {
+    emits("click");
+  };
+  return {
+    clickHandle
+  };
+};
+buildProp({
+  type: [Boolean, void 0],
+  default: void 0
+});
+buildProp({
+  type: String,
+  values: componentSizes,
+  required: false
+});
+buildProp({
+  type: String,
+  values: formComponentSizes,
+  required: false
+});
+const useComponentCustomStyleProp = buildProp({
+  type: Object,
+  default: () => ({})
+});
+buildProp({
+  type: definePropType([String, Number]),
+  default: () => generateId()
+});
+buildProp({
+  type: Boolean,
+  default: true
+});
+const iconProps = buildProps({
+  /**
+   * @description 图标名称，支持图鸟内置图标和图片地址(只支持绝对路径)
+   */
+  name: {
+    type: iconPropType,
+    required: true
+  },
+  /**
+   * @description 图标颜色类型
+   */
+  type: {
+    type: String,
+    values: componentTypes,
+    default: ""
+  },
+  /**
+   * @description 图标颜色, 以tn开头则使用图鸟内置的颜色
+   */
+  color: String,
+  /**
+   * @description 图标大小
+   */
+  size: {
+    type: [String, Number]
+  },
+  /**
+   * @description 图标加粗
+   */
+  bold: Boolean,
+  /**
+   * @description 图标是否为透明
+   */
+  transparent: Boolean,
+  /**
+   * @description 透明图标背景
+   */
+  transparentBg: String,
+  /**
+   * @description 图片模式，当name为图片地址时生效
+   */
+  imgMode: {
+    type: String,
+    values: componentImgModes,
+    default: "aspectFill"
+  },
+  /**
+   * @description 垂直方向上的偏移量
+   */
+  offsetTop: {
+    type: [String, Number]
+  },
+  /**
+   * @description 自定义样式
+   */
+  customStyle: useComponentCustomStyleProp,
+  /**
+   * @description 自定义类
+   */
+  customClass: String
+});
+const iconEmits = {
+  /**
+   * @description 点击图标时触发
+   */
+  click: () => true
+};
+const useIcon = (props) => {
+  const ns = useNamespace("icon");
+  const [colorClass, colorStyle] = useComponentColor(
+    toRef(props, "color"),
+    "text"
+  );
+  const [transparentBgClass] = useComponentColor(
+    toRef(props, "transparentBg"),
+    "bg"
+  );
+  const { sizeType } = useComponentSize(props.size);
+  const isImg = computed(
+    () => !!(props == null ? void 0 : props.name) && props.name.includes("/")
+  );
+  const iconClass = computed(() => {
+    const cls = [];
+    cls.push(ns.b());
+    if (isImg.value) {
+      cls.push(ns.m("image"));
+    } else {
+      if (props.type)
+        cls.push(`tn-type-${props.type}_text`);
+      if (props.transparent) {
+        cls.push("tn-text-transparent", transparentBgClass.value);
+      } else {
+        if (colorClass.value)
+          cls.push(colorClass.value);
+      }
+      if (props.bold)
+        cls.push("tn-text-bold");
+    }
+    if (sizeType.value === "inner")
+      cls.push(ns.m(props.size));
+    if (props.customClass)
+      cls.push(props.customClass);
+    return cls.join(" ");
+  });
+  const iconStyle = computed(() => {
+    const style = {};
+    if (isImg.value) {
+      if (sizeType.value === "custom" && props.size) {
+        style.width = style.height = formatDomSizeValue(props.size);
+      }
+    } else {
+      if (colorStyle.value)
+        style.color = colorStyle.value;
+      if (sizeType.value === "custom" && props.size)
+        style.fontSize = formatDomSizeValue(props.size);
+    }
+    if (props.offsetTop)
+      style.transform = `translateY(${formatDomSizeValue(props.offsetTop)})`;
+    if (!isEmpty(props.customStyle))
+      Object.assign(style, props.customStyle);
+    return style;
+  });
+  return {
+    isImg,
+    iconClass,
+    iconStyle
+  };
+};
 exports._export_sfc = _export_sfc;
 exports.computed = computed;
 exports.createSSRApp = createSSRApp;
@@ -7872,24 +8403,33 @@ exports.e = e;
 exports.f = f;
 exports.getCurrentInstance = getCurrentInstance;
 exports.hasOwn = hasOwn;
+exports.iconEmits = iconEmits;
+exports.iconProps = iconProps;
 exports.index = index;
 exports.inject = inject;
 exports.isArray = isArray;
 exports.isObject = isObject;
 exports.isRef = isRef;
 exports.isString = isString;
+exports.isSymbol = isSymbol;
 exports.n = n;
 exports.nextTick$1 = nextTick$1;
 exports.o = o;
 exports.onLoad = onLoad;
 exports.p = p;
 exports.r = r;
+exports.reactive = reactive;
 exports.ref = ref;
 exports.resolveComponent = resolveComponent;
 exports.s = s;
+exports.suspendButtonEmits = suspendButtonEmits;
+exports.suspendButtonProps = suspendButtonProps;
 exports.t = t;
 exports.toRef = toRef;
 exports.unref = unref;
+exports.useIcon = useIcon;
+exports.useSuspendButton = useSuspendButton;
+exports.useSuspendButtonCustomStyle = useSuspendButtonCustomStyle;
 exports.w = w;
 exports.warn = warn;
 exports.watch = watch;

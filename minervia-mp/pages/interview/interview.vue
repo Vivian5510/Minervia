@@ -1,29 +1,64 @@
 <template>
 	<view class="header">
-		<uni-card class="picker tn-shadow-lg">
+		<view class="picker tn-shadow-lg">
 			<picker :range="models" range-key="name" @change="modelSelect">
 				<view>
 					{{model.name}}
 				</view>
 			</picker>
-		</uni-card>
-		<uni-card class="picker tn-shadow-lg">
+		</view>
+		<view class="picker tn-shadow-lg">
 			<picker :range="categoryItems" range-key="text" @change="categoryItemSelect">
 				<view>
 					{{categoryItem.text}}
 				</view>
 			</picker>
-		</uni-card>
+		</view>
 	</view>
 	<view>
 
 	</view>
-	<view>
+	<view class="footer">
+		<view v-show="btnSwitch.show">
+			<TnButton class="start-btn" width="650rpx" height="80rpx" bg-color="#3d3d3d" :disabled="btnSwitch.disabled">
+				<div class="tn-text-transparent tn-text-bold tn-text-xl tn-gradient-bg__cool-8">
+					{{btnSwitch.text}}
+				</div>
+			</TnButton>
+		</view>
 
+		<view v-show="!btnSwitch.show">
+			<TnSuspendButton class="answer-btn" size="lg" bg-color="#3d3d3d" right="75%" top="90%"
+				:disabled="!btnSwitch.disabled">
+				<div class="image-containner">
+					<image class="image-size" src="@/static/icon/A.svg" mode="aspectFit"></image>
+				</div>
+			</TnSuspendButton>
+			<TnSuspendButton class="answer-btn" size="lg" bg-color="#3d3d3d" right="54%" top="90%"
+				:disabled="!btnSwitch.disabled">
+				<div class="image-containner">
+					<image class="image-size" src="@/static/icon/B.svg" mode="aspectFit"></image>
+				</div>
+			</TnSuspendButton>
+			<TnSuspendButton class="answer-btn" size="lg" bg-color="#3d3d3d" right="33%" top="90%"
+				:disabled="!btnSwitch.disabled">
+				<div class="image-containner">
+					<image class="image-size" src="@/static/icon/C.svg" mode="aspectFit"></image>
+				</div>
+			</TnSuspendButton>
+			<TnSuspendButton class="answer-btn" size="lg" bg-color="#3d3d3d" right="12%" top="90%"
+				:disabled="!btnSwitch.disabled">
+				<div class="image-containner">
+					<image class="image-size" src="@/static/icon/D.svg" mode="aspectFit"></image>
+				</div>
+			</TnSuspendButton>
+		</view>
 	</view>
 </template>
 
 <script setup>
+	import TnSuspendButton from 'tnuiv3p-tn-suspend-button/index.vue'
+	import TnButton from '@/uni_modules/tuniaoui-vue3/components/button/src/button.vue'
 	import {
 		getAllModels,
 		getAllCategoryItems
@@ -46,6 +81,12 @@
 	let categoryItem = reactive({
 		text: '请选择试题分类',
 		name: undefined
+	})
+
+	let btnSwitch = ref({
+		text: '开 始 面 试',
+		disabled: false,
+		show: false
 	})
 
 	function modelSelect(event) {
@@ -106,7 +147,7 @@
 	.header {
 		position: fixed;
 		width: 100%;
-		top: 0;
+		top: 0rpx;
 		background-color: #ffffff; // 白色背景
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // 添加轻微阴影
 		border-radius: 15px; // 圆角
@@ -118,7 +159,7 @@
 			font-size: 14px; // 调整字体大小
 			color: #333; // 深灰色文字
 			text-align: center; // 内容居中
-			width: 42%; // 调整宽度稍微小一点，增加间距
+			width: 47%; // 调整宽度稍微小一点，增加间距
 			display: inline-block;
 			vertical-align: top; // 确保与其他元素对齐
 			margin: 0 1%; // 添加左右间距
@@ -131,6 +172,38 @@
 			&:hover {
 				transform: translateY(-3px); // 悬停时略微上移
 				box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); // 悬停时增加阴影
+			}
+		}
+	}
+
+	.footer {
+		position: fixed;
+		bottom: 20rpx;
+		width: 100%;
+		height: 64rpx;
+		background-color: #ffffff;
+		opacity: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.start-btn {}
+
+		.moveon-btn {}
+
+		.answer-btn {
+
+			.image-containner {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 40rpx;
+				height: 40rpx;
+
+				.image {
+					width: 35rpx;
+					height: 35rpx;
+				}
 			}
 		}
 	}

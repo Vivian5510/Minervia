@@ -8,7 +8,7 @@ uni_modules_tuniaouiVue3_utils_vue_props_runtime.buildProp({
   type: [Boolean, void 0],
   default: void 0
 });
-uni_modules_tuniaouiVue3_utils_vue_props_runtime.buildProp({
+const useComponentSizeProp = uni_modules_tuniaouiVue3_utils_vue_props_runtime.buildProp({
   type: String,
   values: uni_modules_tuniaouiVue3_constants_size.componentSizes,
   required: false
@@ -32,3 +32,4 @@ const useComponentSafeAreaInsetBottomProp = uni_modules_tuniaouiVue3_utils_vue_p
 });
 exports.useComponentCustomStyleProp = useComponentCustomStyleProp;
 exports.useComponentSafeAreaInsetBottomProp = useComponentSafeAreaInsetBottomProp;
+exports.useComponentSizeProp = useComponentSizeProp;
