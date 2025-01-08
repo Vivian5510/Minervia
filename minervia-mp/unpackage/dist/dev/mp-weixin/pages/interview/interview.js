@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 const utils_tool = require("../../utils/tool.js");
 const utils_api = require("../../utils/api.js");
 if (!Array) {
@@ -20,7 +19,7 @@ const _sfc_main = {
     let models = common_vendor.ref([]);
     let categoryItems = common_vendor.ref([]);
     let model = common_vendor.reactive({
-      name: "请选择AI模型",
+      name: "请选择考官模型",
       charge: void 0
     });
     let categoryItem = common_vendor.reactive({
@@ -36,6 +35,25 @@ const _sfc_main = {
       text: "",
       show: false
     });
+    function answerQuestion(answer) {
+      let mpRequest = {
+        sessionId: utils_tool.getSessionId(false),
+        subject: categoryName,
+        content: answer,
+        type: "a",
+        modelName: model.name
+      };
+      common_vendor.index.showLoading({
+        title: "面试官正在思考"
+      });
+      btnSwitch.disabled = !btnSwitch.disabled;
+      utils_api.chat(mpRequest).then((res) => {
+        btnSwitch.show = !btnSwitch.show;
+        content.show = true;
+        content.text = res.content;
+      });
+      common_vendor.index.hideLoading();
+    }
     function startInterview() {
       if (model.name == "请选择AI模型") {
         common_vendor.index.showToast({
@@ -53,29 +71,36 @@ const _sfc_main = {
         return;
       }
       let mpRequest = {
-        sessionId: utils_tool.getSessionId(),
+        sessionId: utils_tool.getSessionId(true),
         subject: categoryName,
         content: categoryItem.name,
         type: "q",
         modelName: model.name
       };
       common_vendor.index.showLoading({
-        image: "../../static/icon/angel.svg",
         title: "面试官正在思考"
       });
-      btnSwitch.disabled = !btnSwitch.disabled;
       utils_api.chat(mpRequest).then((res) => {
         btnSwitch.show = !btnSwitch.show;
         btnSwitch.text = "再来一题";
-        content.show = !content.show;
+        content.show = true;
         content.text = res.content;
       });
       common_vendor.index.hideLoading();
     }
+    function refresh() {
+      btnSwitch.disabled = false;
+      btnSwitch.show = true;
+      btnSwitch.text = "开 始 面 试";
+      content.show = false;
+      content.text = "";
+    }
     function modelSelect(event) {
+      refresh();
       Object.assign(model, models.value[event.detail.value]);
     }
     function categoryItemSelect(event) {
+      refresh();
       Object.assign(categoryItem, categoryItems.value[event.detail.value]);
     }
     common_vendor.onLoad((options) => {
@@ -140,7 +165,7 @@ const _sfc_main = {
           disabled: common_vendor.unref(btnSwitch).disabled
         }),
         m: common_vendor.unref(btnSwitch).show,
-        n: common_assets._imports_0$1,
+        n: common_vendor.o(($event) => answerQuestion("A")),
         o: common_vendor.p({
           size: "lg",
           ["bg-color"]: "#3d3d3d",
@@ -148,7 +173,7 @@ const _sfc_main = {
           top: "90%",
           disabled: !common_vendor.unref(btnSwitch).disabled
         }),
-        p: common_assets._imports_1$1,
+        p: common_vendor.o(($event) => answerQuestion("B")),
         q: common_vendor.p({
           size: "lg",
           ["bg-color"]: "#3d3d3d",
@@ -156,7 +181,7 @@ const _sfc_main = {
           top: "90%",
           disabled: !common_vendor.unref(btnSwitch).disabled
         }),
-        r: common_assets._imports_2,
+        r: common_vendor.o(($event) => answerQuestion("C")),
         s: common_vendor.p({
           size: "lg",
           ["bg-color"]: "#3d3d3d",
@@ -164,7 +189,7 @@ const _sfc_main = {
           top: "90%",
           disabled: !common_vendor.unref(btnSwitch).disabled
         }),
-        t: common_assets._imports_3,
+        t: common_vendor.o(($event) => answerQuestion("D")),
         v: common_vendor.p({
           size: "lg",
           ["bg-color"]: "#3d3d3d",

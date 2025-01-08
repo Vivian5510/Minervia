@@ -7,7 +7,7 @@ export const getSessionId = (start) => {
 			data: sessionId
 		})
 	} else {
-		uni.getStorage({
+		uni.getStorageSync({
 			key: 'sessionId',
 			success: (res) => {
 				sessionId = res.data
