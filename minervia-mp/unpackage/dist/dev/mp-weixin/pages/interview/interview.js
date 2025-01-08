@@ -2,8 +2,13 @@
 const common_vendor = require("../../common/vendor.js");
 const common_assets = require("../../common/assets.js");
 const utils_api = require("../../utils/api.js");
+if (!Array) {
+  const _easycom_uni_card2 = common_vendor.resolveComponent("uni-card");
+  _easycom_uni_card2();
+}
+const _easycom_uni_card = () => "../../uni_modules/uni-card/components/uni-card/uni-card.js";
 if (!Math) {
-  (TnButton + TnSuspendButton)();
+  (_easycom_uni_card + TnButton + TnSuspendButton)();
 }
 const TnSuspendButton = () => "../../node-modules/tnuiv3p-tn-suspend-button/index.js";
 const TnButton = () => "../../uni_modules/tuniaoui-vue3/components/button/src/button.js";
@@ -26,6 +31,8 @@ const _sfc_main = {
       disabled: false,
       show: false
     });
+    let content = common_vendor.ref("");
+    let showContent = common_vendor.ref(true);
     function modelSelect(event) {
       Object.assign(model, models.value[event.detail.value]);
     }
@@ -79,47 +86,53 @@ const _sfc_main = {
         d: common_vendor.t(common_vendor.unref(categoryItem).text),
         e: common_vendor.unref(categoryItems),
         f: common_vendor.o(categoryItemSelect),
-        g: common_vendor.t(common_vendor.unref(btnSwitch).text),
+        g: common_vendor.t(common_vendor.unref(content)),
         h: common_vendor.p({
+          ["v-show"]: common_vendor.unref(showContent),
+          title: "Minervia",
+          extra: `${common_vendor.unref(categoryItem).text}面试题`
+        }),
+        i: common_vendor.t(common_vendor.unref(btnSwitch).text),
+        j: common_vendor.p({
           width: "650rpx",
           height: "80rpx",
           ["bg-color"]: "#3d3d3d",
           disabled: common_vendor.unref(btnSwitch).disabled
         }),
-        i: common_vendor.unref(btnSwitch).show,
-        j: common_assets._imports_0$1,
-        k: common_vendor.p({
+        k: common_vendor.unref(btnSwitch).show,
+        l: common_assets._imports_0$1,
+        m: common_vendor.p({
           size: "lg",
           ["bg-color"]: "#3d3d3d",
           right: "75%",
           top: "90%",
           disabled: !common_vendor.unref(btnSwitch).disabled
         }),
-        l: common_assets._imports_1$1,
-        m: common_vendor.p({
+        n: common_assets._imports_1$1,
+        o: common_vendor.p({
           size: "lg",
           ["bg-color"]: "#3d3d3d",
           right: "54%",
           top: "90%",
           disabled: !common_vendor.unref(btnSwitch).disabled
         }),
-        n: common_assets._imports_2,
-        o: common_vendor.p({
+        p: common_assets._imports_2,
+        q: common_vendor.p({
           size: "lg",
           ["bg-color"]: "#3d3d3d",
           right: "33%",
           top: "90%",
           disabled: !common_vendor.unref(btnSwitch).disabled
         }),
-        p: common_assets._imports_3,
-        q: common_vendor.p({
+        r: common_assets._imports_3,
+        s: common_vendor.p({
           size: "lg",
           ["bg-color"]: "#3d3d3d",
           right: "12%",
           top: "90%",
           disabled: !common_vendor.unref(btnSwitch).disabled
         }),
-        r: !common_vendor.unref(btnSwitch).show
+        t: !common_vendor.unref(btnSwitch).show
       };
     };
   }

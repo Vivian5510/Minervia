@@ -15,8 +15,12 @@
 			</picker>
 		</view>
 	</view>
-	<view>
-
+	<view class="body">
+		<scroll-view :scroll-top="0" :scroll-y="true" class="scroll-containner">
+			<uni-card class="content" :v-show="showContent" title="Minervia" :extra="`${categoryItem.text}面试题`">
+				<div>{{content}}</div>
+			</uni-card>
+		</scroll-view>
 	</view>
 	<view class="footer">
 		<view v-show="btnSwitch.show">
@@ -88,6 +92,9 @@
 		disabled: false,
 		show: false
 	})
+
+	let content = ref('')
+	let showContent = ref(true)
 
 	function modelSelect(event) {
 		Object.assign(model, models.value[event.detail.value])
@@ -173,6 +180,18 @@
 				transform: translateY(-3px); // 悬停时略微上移
 				box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); // 悬停时增加阴影
 			}
+		}
+	}
+
+	.body {
+		position: fixed;
+		top: 100rpx;
+		bottom: 64rpx;
+
+		.scroll-containner {
+			position: fixed;
+
+			.content {}
 		}
 	}
 

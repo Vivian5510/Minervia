@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "Minervia-AI面试官",
   "usingComponents": {
+    "uni-card": "../../uni_modules/uni-card/components/uni-card/uni-card",
     "tn-suspend-button": "../../node-modules/tnuiv3p-tn-suspend-button/index",
     "tn-button": "../../uni_modules/tuniaoui-vue3/components/button/src/button"
   }

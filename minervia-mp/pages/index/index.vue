@@ -140,7 +140,6 @@
 		align-items: center;
 		justify-content: center;
 		padding: 15px 0;
-		border-radius: 20rpx;
 	}
 </style>
 <style>

@@ -52,6 +52,14 @@
   transform: translateY(-3px);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
+.body {
+  position: fixed;
+  top: 100rpx;
+  bottom: 64rpx;
+}
+.body .scroll-containner {
+  position: fixed;
+}
 .footer {
   position: fixed;
   bottom: 20rpx;
