@@ -41,9 +41,9 @@ const _sfc_main = {
         });
       } else {
         common_vendor.index.showToast({
-          duration: 2e3,
+          duration: 1e3,
           title: "快马加鞭开发中",
-          icon: "none"
+          image: "../../static/icon/smile.svg"
         });
       }
     }

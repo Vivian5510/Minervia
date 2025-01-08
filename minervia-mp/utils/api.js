@@ -84,3 +84,11 @@ export const getAllCategoryItems = (categoryName) => {
 		method: 'GET'
 	})
 }
+
+export const chat = (data) => {
+	return request({
+		url: '/chat',
+		method: 'POST',
+		data: data
+	})
+}

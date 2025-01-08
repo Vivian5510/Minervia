@@ -17,14 +17,15 @@
 	</view>
 	<view class="body">
 		<scroll-view :scroll-top="0" :scroll-y="true" class="scroll-containner">
-			<uni-card class="content" :v-show="showContent" title="Minervia" :extra="`${categoryItem.text}面试题`">
-				<div>{{content}}</div>
+			<uni-card class="content" v-show="content.show" title="Minervia" :extra="`${categoryItem.text}面试题`">
+				<text>{{content.text}}</text>
 			</uni-card>
 		</scroll-view>
 	</view>
 	<view class="footer">
 		<view v-show="btnSwitch.show">
-			<TnButton class="start-btn" width="650rpx" height="80rpx" bg-color="#3d3d3d" :disabled="btnSwitch.disabled">
+			<TnButton class="start-btn" width="650rpx" height="80rpx" bg-color="#3d3d3d" :disabled="btnSwitch.disabled"
+				@click="startInterview">
 				<div class="tn-text-transparent tn-text-bold tn-text-xl tn-gradient-bg__cool-8">
 					{{btnSwitch.text}}
 				</div>
@@ -61,11 +62,15 @@
 </template>
 
 <script setup>
+	import {
+		getSessionId
+	} from '@/utils/tool'
 	import TnSuspendButton from 'tnuiv3p-tn-suspend-button/index.vue'
 	import TnButton from '@/uni_modules/tuniaoui-vue3/components/button/src/button.vue'
 	import {
 		getAllModels,
-		getAllCategoryItems
+		getAllCategoryItems,
+		chat
 	} from '@/utils/api';
 	import {
 		onLoad
@@ -87,14 +92,63 @@
 		name: undefined
 	})
 
-	let btnSwitch = ref({
+	let btnSwitch = reactive({
 		text: '开 始 面 试',
 		disabled: false,
+		show: true
+	})
+
+	let content = reactive({
+		text: '',
 		show: false
 	})
 
-	let content = ref('')
-	let showContent = ref(true)
+
+	function startInterview() {
+		if (model.name == '请选择AI模型') {
+			uni.showToast({
+				image: '../../static/icon/angel.svg',
+				title: '请选择AI模型',
+				duration: 1000
+			})
+			return;
+		} else if (categoryItem.text == '请选择试题分类') {
+			uni.showToast({
+				image: '../../static/icon/angel.svg',
+				title: '请选择试题分类',
+				duration: 1000
+			})
+			return;
+		}
+
+		let mpRequest = {
+			sessionId: getSessionId(),
+			subject: categoryName,
+			content: categoryItem.name,
+			type: 'q',
+			modelName: model.name
+		}
+
+		uni.showLoading({
+			image: '../../static/icon/angel.svg',
+			title: '面试官正在思考',
+		})
+		btnSwitch.disabled = !btnSwitch.disabled;
+		// btnSwitch.show = !btnSwitch.show
+		// btnSwitch.text = '再来一题'
+		// content.show = !content.show
+		// content.text =
+		// 	'在MySQL中，关于索引的描述，以下哪项是不正确的？\n\rA. 索引可以加快数据的检索速度。\n\rB. 索引可以提高数据的写入速度。\n\rC. 索引的创建会增加数据库的存储空间消耗。\n\rD. 在进行表连接操作时，索引不会提高查询效率。'
+		chat(mpRequest).then(res => {
+			btnSwitch.show = !btnSwitch.show
+			btnSwitch.text = '再来一题'
+			content.show = !content.show
+			content.text = res.content
+		})
+		uni.hideLoading()
+	}
+
+
 
 	function modelSelect(event) {
 		Object.assign(model, models.value[event.detail.value])

@@ -1,6 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const common_assets = require("../../common/assets.js");
+const utils_tool = require("../../utils/tool.js");
 const utils_api = require("../../utils/api.js");
 if (!Array) {
   const _easycom_uni_card2 = common_vendor.resolveComponent("uni-card");
@@ -26,13 +27,51 @@ const _sfc_main = {
       text: "请选择试题分类",
       name: void 0
     });
-    let btnSwitch = common_vendor.ref({
+    let btnSwitch = common_vendor.reactive({
       text: "开 始 面 试",
       disabled: false,
+      show: true
+    });
+    let content = common_vendor.reactive({
+      text: "",
       show: false
     });
-    let content = common_vendor.ref("");
-    let showContent = common_vendor.ref(true);
+    function startInterview() {
+      if (model.name == "请选择AI模型") {
+        common_vendor.index.showToast({
+          image: "../../static/icon/angel.svg",
+          title: "请选择AI模型",
+          duration: 1e3
+        });
+        return;
+      } else if (categoryItem.text == "请选择试题分类") {
+        common_vendor.index.showToast({
+          image: "../../static/icon/angel.svg",
+          title: "请选择试题分类",
+          duration: 1e3
+        });
+        return;
+      }
+      let mpRequest = {
+        sessionId: utils_tool.getSessionId(),
+        subject: categoryName,
+        content: categoryItem.name,
+        type: "q",
+        modelName: model.name
+      };
+      common_vendor.index.showLoading({
+        image: "../../static/icon/angel.svg",
+        title: "面试官正在思考"
+      });
+      btnSwitch.disabled = !btnSwitch.disabled;
+      utils_api.chat(mpRequest).then((res) => {
+        btnSwitch.show = !btnSwitch.show;
+        btnSwitch.text = "再来一题";
+        content.show = !content.show;
+        content.text = res.content;
+      });
+      common_vendor.index.hideLoading();
+    }
     function modelSelect(event) {
       Object.assign(model, models.value[event.detail.value]);
     }
@@ -86,53 +125,54 @@ const _sfc_main = {
         d: common_vendor.t(common_vendor.unref(categoryItem).text),
         e: common_vendor.unref(categoryItems),
         f: common_vendor.o(categoryItemSelect),
-        g: common_vendor.t(common_vendor.unref(content)),
-        h: common_vendor.p({
-          ["v-show"]: common_vendor.unref(showContent),
+        g: common_vendor.t(common_vendor.unref(content).text),
+        h: common_vendor.unref(content).show,
+        i: common_vendor.p({
           title: "Minervia",
           extra: `${common_vendor.unref(categoryItem).text}面试题`
         }),
-        i: common_vendor.t(common_vendor.unref(btnSwitch).text),
-        j: common_vendor.p({
+        j: common_vendor.t(common_vendor.unref(btnSwitch).text),
+        k: common_vendor.o(startInterview),
+        l: common_vendor.p({
           width: "650rpx",
           height: "80rpx",
           ["bg-color"]: "#3d3d3d",
           disabled: common_vendor.unref(btnSwitch).disabled
         }),
-        k: common_vendor.unref(btnSwitch).show,
-        l: common_assets._imports_0$1,
-        m: common_vendor.p({
+        m: common_vendor.unref(btnSwitch).show,
+        n: common_assets._imports_0$1,
+        o: common_vendor.p({
           size: "lg",
           ["bg-color"]: "#3d3d3d",
           right: "75%",
           top: "90%",
           disabled: !common_vendor.unref(btnSwitch).disabled
         }),
-        n: common_assets._imports_1$1,
-        o: common_vendor.p({
+        p: common_assets._imports_1$1,
+        q: common_vendor.p({
           size: "lg",
           ["bg-color"]: "#3d3d3d",
           right: "54%",
           top: "90%",
           disabled: !common_vendor.unref(btnSwitch).disabled
         }),
-        p: common_assets._imports_2,
-        q: common_vendor.p({
+        r: common_assets._imports_2,
+        s: common_vendor.p({
           size: "lg",
           ["bg-color"]: "#3d3d3d",
           right: "33%",
           top: "90%",
           disabled: !common_vendor.unref(btnSwitch).disabled
         }),
-        r: common_assets._imports_3,
-        s: common_vendor.p({
+        t: common_assets._imports_3,
+        v: common_vendor.p({
           size: "lg",
           ["bg-color"]: "#3d3d3d",
           right: "12%",
           top: "90%",
           disabled: !common_vendor.unref(btnSwitch).disabled
         }),
-        t: !common_vendor.unref(btnSwitch).show
+        w: !common_vendor.unref(btnSwitch).show
       };
     };
   }

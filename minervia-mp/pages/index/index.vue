@@ -70,9 +70,9 @@
 			})
 		} else {
 			uni.showToast({
-				duration: 2000,
+				duration: 1000,
 				title: '快马加鞭开发中',
-				icon: 'none'
+				image: '../../static/icon/smile.svg'
 			})
 		}
 	}
@@ -85,7 +85,7 @@
 			},
 			fail: (err) => {
 				uni.showLoading({
-					title: '数据加载中'
+					title: '数据加载中',
 				});
 				getAllBanners().then((res) => {
 					banners.value = res;
