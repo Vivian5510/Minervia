@@ -78,6 +78,12 @@ const getAllCategoryItems = (categoryName) => {
     method: "GET"
   });
 };
+const getAllRecords = (pageNum) => {
+  return request({
+    url: "/records?page_number=" + pageNum,
+    method: "GET"
+  });
+};
 const chat = (data) => {
   return request({
     url: "/chat",
@@ -90,3 +96,4 @@ exports.getAllBanners = getAllBanners;
 exports.getAllCategories = getAllCategories;
 exports.getAllCategoryItems = getAllCategoryItems;
 exports.getAllModels = getAllModels;
+exports.getAllRecords = getAllRecords;

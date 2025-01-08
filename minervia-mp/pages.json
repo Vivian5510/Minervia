@@ -23,6 +23,18 @@
 			"style": {
 				"navigationBarTitleText": "Minervia-AI面试官"
 			}
+		},
+		{
+			"path": "pages/records/records",
+			"style": {
+				"navigationBarTitleText": "Minervia-面试记录"
+			}
+		},
+		{
+			"path": "pages/records-detail/records-detail",
+			"style": {
+				"navigationBarTitleText": "Minervia-面试详情"
+			}
 		}
 	],
 	"globalStyle": {

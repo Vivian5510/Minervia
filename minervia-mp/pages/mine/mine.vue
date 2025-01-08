@@ -252,7 +252,9 @@
 
 	function itemClick(item) {
 		if (item == 'records') {
-
+			uni.navigateTo({
+				url: '/pages/records/records'
+			})
 		} else {
 			showPopup.value = true
 		}

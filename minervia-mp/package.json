@@ -3,6 +3,7 @@
     "@tuniao/tn-icon": "^1.9.0",
     "@tuniao/tn-style": "^1.0.20",
     "@tuniao/tnui-vue3-uniapp": "^1.0.22",
+    "tnuiv3p-tn-graphic-card": "^1.0.15",
     "tnuiv3p-tn-suspend-button": "^1.0.0"
   }
 }

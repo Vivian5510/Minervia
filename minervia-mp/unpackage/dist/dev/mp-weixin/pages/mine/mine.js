@@ -10,9 +10,11 @@ const _sfc_main = {
   setup(__props) {
     let showPopup = common_vendor.ref(false);
     function itemClick(item) {
-      if (item == "records")
-        ;
-      else {
+      if (item == "records") {
+        common_vendor.index.navigateTo({
+          url: "/pages/records/records"
+        });
+      } else {
         showPopup.value = true;
       }
     }

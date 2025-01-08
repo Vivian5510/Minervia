@@ -1,3 +1,7 @@
+import {
+	subsectionContextKey
+} from "@tuniao/tnui-vue3-uniapp/tokens";
+
 const BASE_URL = 'http://localhost:8080/mp'
 
 export const request = (options) => {
@@ -81,6 +85,13 @@ export const getAllModels = () => {
 export const getAllCategoryItems = (categoryName) => {
 	return request({
 		url: '/categoryItems/' + categoryName,
+		method: 'GET'
+	})
+}
+
+export const getAllRecords = (pageNum) => {
+	return request({
+		url: '/records?page_number=' + pageNum,
 		method: 'GET'
 	})
 }

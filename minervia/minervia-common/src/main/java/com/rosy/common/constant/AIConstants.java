@@ -12,4 +12,5 @@ public class AIConstants {
     public static final String QUESTION_TYPE_CHOICE = "single_choice";
     public static final String QUESTION_TYPE_CLOZE = "cloze";
     public static final String QUESTION_TYPE_TF = "true_false";
+    public static final Integer RECORD_PAGE_SIZE = 10;
 }

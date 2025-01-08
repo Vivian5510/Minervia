@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/mine/mine",
     "pages/webview/webview",
-    "pages/interview/interview"
+    "pages/interview/interview",
+    "pages/records/records",
+    "pages/records-detail/records-detail"
   ],
   "window": {
     "navigationBarTextStyle": "black",
