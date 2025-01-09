@@ -1,9 +1,3 @@
-halo 这里是Minervia，一个AI面试小程序。
-
-这是一个练手的项目，锻炼将业务和AI融合的能力
-
-背景是AI正在逐渐融入我们的生活
-
 # Minervia - AI Interview Assistant
 
 Minervia is an AI-powered interview assistant designed to combine AI and interviews and provide an interview exprience different from the past. This project serves as a hands-on learning experience where I focus on developing the core business code and combining it with AI technology to create a functional and efficient interview assistant.
