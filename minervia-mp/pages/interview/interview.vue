@@ -117,17 +117,17 @@
 			title: '面试官正在思考',
 		})
 
-		// btnSwitch.show = !btnSwitch.show
-		// content.show = true
-		// content.text =
-		// 	'您的选择是：B（索引可以提高数据的写入速度）。答案是不正确的。\n\n 详细解析：\n A.索引可以加快数据的检索速度。\n 正确。 索引通过快速定位数据， 减少查询扫描行数， 从而加快检索速度。\n\n B.索引可以提高数据的写入速度。\ n不正确。 索引的维护会增加额外开销， 特别是在插入、 更新、 删除时， 数据库需要同步更新索引信息， 降低了写入效率。\n\n C.索引的创建会增加数据库的存储空间消耗。\n 正确。 索引的创建需要额外存储空间， 用于存储索引结构和元数据。\n\n D.在进行表连接操作时， 索引不会提高查询效率。\n 不正确。 索引在表连接操作中非常重要， 能显著提高连接效率， 减少全表扫描。\n\n 结论： 您选择的 B 是正确答案， 因为它是题目中关于索引描述的错误项。 '
+		btnSwitch.show = !btnSwitch.show
+		content.show = true
+		content.text =
+			'您的选择是：B（索引可以提高数据的写入速度）。答案是不正确的。\n\n 详细解析：\n A.索引可以加快数据的检索速度。\n 正确。 索引通过快速定位数据， 减少查询扫描行数， 从而加快检索速度。\n\n B.索引可以提高数据的写入速度。\ n不正确。 索引的维护会增加额外开销， 特别是在插入、 更新、 删除时， 数据库需要同步更新索引信息， 降低了写入效率。\n\n C.索引的创建会增加数据库的存储空间消耗。\n 正确。 索引的创建需要额外存储空间， 用于存储索引结构和元数据。\n\n D.在进行表连接操作时， 索引不会提高查询效率。\n 不正确。 索引在表连接操作中非常重要， 能显著提高连接效率， 减少全表扫描。\n\n 结论： 您选择的 B 是正确答案， 因为它是题目中关于索引描述的错误项。 '
 
 		btnSwitch.disabled = !btnSwitch.disabled;
-		chat(mpRequest).then(res => {
-			btnSwitch.show = !btnSwitch.show
-			content.show = true
-			content.text = res.content
-		})
+		// chat(mpRequest).then(res => {
+		// 	btnSwitch.show = !btnSwitch.show
+		// 	content.show = true
+		// 	content.text = res.content
+		// })
 
 		uni.hideLoading()
 	}
@@ -161,19 +161,19 @@
 			title: '面试官正在思考',
 		})
 
-		// btnSwitch.disabled = !btnSwitch.disabled;
-		// btnSwitch.show = !btnSwitch.show
-		// btnSwitch.text = '再 来 一 题'
-		// content.show = true
-		// content.text =
-		// 	'在MySQL中，关于索引的描述，以下哪项是不正确的？\n\rA. 索引可以加快数据的检索速度。\n\rB. 索引可以提高数据的写入速度。\n\rC. 索引的创建会增加数据库的存储空间消耗。\n\rD. 在进行表连接操作时，索引不会提高查询效率。'
+		btnSwitch.disabled = !btnSwitch.disabled;
+		btnSwitch.show = !btnSwitch.show
+		btnSwitch.text = '再 来 一 题'
+		content.show = true
+		content.text =
+			'在MySQL中，关于索引的描述，以下哪项是不正确的？\n\rA. 索引可以加快数据的检索速度。\n\rB. 索引可以提高数据的写入速度。\n\rC. 索引的创建会增加数据库的存储空间消耗。\n\rD. 在进行表连接操作时，索引不会提高查询效率。'
 
-		chat(mpRequest).then(res => {
-			btnSwitch.show = !btnSwitch.show
-			btnSwitch.text = '再来一题'
-			content.show = true
-			content.text = res.content
-		})
+		// chat(mpRequest).then(res => {
+		// 	btnSwitch.show = !btnSwitch.show
+		// 	btnSwitch.text = '再来一题'
+		// 	content.show = true
+		// 	content.text = res.content
+		// })
 		uni.hideLoading()
 	}
 

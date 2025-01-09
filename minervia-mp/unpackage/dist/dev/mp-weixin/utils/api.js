@@ -84,14 +84,6 @@ const getAllRecords = (pageNum) => {
     method: "GET"
   });
 };
-const chat = (data) => {
-  return request({
-    url: "/chat",
-    method: "POST",
-    data
-  });
-};
-exports.chat = chat;
 exports.getAllBanners = getAllBanners;
 exports.getAllCategories = getAllCategories;
 exports.getAllCategoryItems = getAllCategoryItems;
