@@ -7,7 +7,7 @@ minervia:
   # 版权年份
   copyrightYear: 2024
   # 文件路径 示例（ Windows配置D:/minervia/uploadPath，Linux配置 /home/minervia/uploadPath）
-  profile: D:/minervia/uploadPath
+  profile: G:/Material/Pictures/Minervia
   # 获取ip地址开关
   addressEnabled: false
   # 验证码类型 math 数字计算 char 字符验证

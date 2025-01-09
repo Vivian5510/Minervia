@@ -16,4 +16,8 @@ import java.util.List;
 public interface IBannerService extends IService<Banner> {
 
     List<Banner> getAllBanners();
+
+    List<Banner> selectBannerList(Banner banner);
+
+    boolean checkTitleExists(Banner banner);
 }

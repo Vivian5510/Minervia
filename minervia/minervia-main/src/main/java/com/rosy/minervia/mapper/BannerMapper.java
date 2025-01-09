@@ -3,6 +3,8 @@ package com.rosy.minervia.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.rosy.minervia.domain.entity.Banner;
 
+import java.util.List;
+
 /**
  * <p>
  * Mapper 接口
@@ -13,4 +15,5 @@ import com.rosy.minervia.domain.entity.Banner;
  */
 public interface BannerMapper extends BaseMapper<Banner> {
 
+    List<Banner> selectBannerList(Banner banner);
 }

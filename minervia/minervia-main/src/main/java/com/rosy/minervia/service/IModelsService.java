@@ -17,4 +17,8 @@ import java.util.List;
 public interface IModelsService extends IService<Models> {
 
     List<Models> getAllModels();
+
+    List<Models> selectModelsList(Models model);
+
+    boolean checkNameExists(Models model);
 }

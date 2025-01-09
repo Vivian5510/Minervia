@@ -2,4 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rosy.minervia.mapper.CategoryMapper">
 
+    <select id="selectCategoryList" resultType="com.rosy.minervia.domain.entity.Category">
+        SELECT *
+        FROM minervia_category
+        WHERE del_flag = 0
+        <if test="name != null and name != ''">
+            AND name = #{name}
+        </if>
+    </select>
 </mapper>

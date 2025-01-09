@@ -1,5 +1,8 @@
 package com.rosy.common.config;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +11,8 @@ import org.springframework.stereotype.Component;
  *
  * @author rosy
  */
+
+@Data
 @Component
 @ConfigurationProperties(prefix = "minervia")
 public class MinerviaConfig {
@@ -29,60 +34,27 @@ public class MinerviaConfig {
     /**
      * 上传路径
      */
+    @Getter
     private static String profile;
 
     /**
      * 获取地址开关
      */
+    @Getter
     private static boolean addressEnabled;
 
     /**
      * 验证码类型
      */
+    @Getter
     private static String captchaType;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
-    public String getCopyrightYear() {
-        return copyrightYear;
-    }
-
-    public void setCopyrightYear(String copyrightYear) {
-        this.copyrightYear = copyrightYear;
-    }
-
-    public static String getProfile() {
-        return profile;
-    }
 
     public void setProfile(String profile) {
         MinerviaConfig.profile = profile;
     }
 
-    public static boolean isAddressEnabled() {
-        return addressEnabled;
-    }
-
     public void setAddressEnabled(boolean addressEnabled) {
         MinerviaConfig.addressEnabled = addressEnabled;
-    }
-
-    public static String getCaptchaType() {
-        return captchaType;
     }
 
     public void setCaptchaType(String captchaType) {

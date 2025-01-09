@@ -16,4 +16,8 @@ import java.util.List;
 public interface ICategoryService extends IService<Category> {
 
     List<Category> getAllCategories();
+
+    List<Category> selectCategoryList(Category category);
+
+    boolean checkNameExists(Category category);
 }

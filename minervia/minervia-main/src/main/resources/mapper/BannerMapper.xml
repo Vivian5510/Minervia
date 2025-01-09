@@ -2,4 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rosy.minervia.mapper.BannerMapper">
 
+    <select id="selectBannerList" resultType="com.rosy.minervia.domain.entity.Banner">
+        SELECT *
+        FROM minervia_banner
+        WHERE del_flag = 0
+        <if test="title != null and title != ''">
+            AND title = #{title}
+        </if>
+    </select>
 </mapper>

@@ -121,7 +121,7 @@ public class SecurityConfig {
                             // 对于后台登录login 注册register 验证码captchaImage 允许匿名访问
                             .requestMatchers("/login", "/register", "/captchaImage").permitAll()
                             // 静态资源，可匿名访问
-                            .requestMatchers(HttpMethod.GET, "/", "/*.html", "/**.html", "/**.css", "/**.js", "/profile/**").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/", "/*.html", "/**.html", "/**.css", "/**.js", "/profile/**", "/file/view/**").permitAll()
                             .requestMatchers("/druid/**").permitAll()
                             .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/**").permitAll()
                             // 除上面外的所有请求全部需要鉴权认证
