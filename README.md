@@ -23,25 +23,17 @@ AI is increasingly becoming an integral part of our daily lives, and I believe i
 
 
 
-
-
 ## Preview
 
-小程序页面：
 
-<img src="G:\Material\Codes\minervia\img\image-20250109204303602.png" alt="image-20250109204303602" style="zoom:25%;" /><img src="G:\Material\Codes\minervia\img\image-20250109204338911.png" alt="image-20250109204338911" style="zoom:25%;" /><img src="G:\Material\Codes\minervia\img\image-20250109204402000.png" alt="image-20250109204402000" style="zoom:25%;" />
 
-<img src="G:\Material\Codes\minervia\img\image-20250109204025221.png" alt="image-20250109204025221" style="zoom:25%;" /><img src="G:\Material\Codes\minervia\img\image-20250109204150884.png" alt="image-20250109204150884" style="zoom:25%;" /><img src="G:\Material\Codes\minervia\img\image-20250109204227708.png" alt="image-20250109204227708" style="zoom:25%;" />
+### 小程序页面：
 
-<img src="G:\Material\Codes\minervia\img\image-20250109204430270.png" alt="image-20250109204430270" style="zoom:25%;" /><img src="G:\Material\Codes\minervia\img\image-20250109204505427.png" alt="image-20250109204505427" style="zoom:25%;" />
+<img src="./img/image-20250109204303602.png" alt="image-20250109204303602" style="zoom:25%;" /> <img src="./img/image-20250109204338911.png" alt="image-20250109204338911" style="zoom:25%;" /> <img src="./img/image-20250109204402000.png" alt="image-20250109204402000" style="zoom:25%;" />  <img src="./img/image-20250109204025221.png" alt="image-20250109204025221" style="zoom:25%;" /> <img src="./img/image-20250109204150884.png" alt="image-20250109204150884" style="zoom:25%;" /> <img src="./img/image-20250109204227708.png" alt="image-20250109204227708" style="zoom:25%;" />  <img src="./img/image-20250109204430270.png" alt="image-20250109204430270" style="zoom:25%;" /> <img src="./img/image-20250109204505427.png" alt="image-20250109204505427" style="zoom:25%;" />  
 
 
 
-后台页面：
+### 后台页面：
 
-![image-20250109204607462](G:\Material\Codes\minervia\img\image-20250109204607462.png)
-
-
-
-
+### <img src="./img/image-20250109204607462.png" alt="image-20250109204607462" />
 
